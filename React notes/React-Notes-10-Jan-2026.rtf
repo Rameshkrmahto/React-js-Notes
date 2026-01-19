@@ -1,0 +1,174 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red108\green18\blue48;\red15\green112\blue1;\red19\green118\blue70;\red107\green0\blue1;
+\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50588\c12157\c24706;\cssrgb\c0\c50196\c0;\cssrgb\c3529\c52549\c34510;\cssrgb\c50196\c0\c0;
+\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0 Synthetic Events\
+ 
+\f1\b0 1. Mouse Events\
+ 2. Keyboard Events\
+\
+ Ex:\
+	key-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  axios \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "axios"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  KeyDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [users, setUsers] = useState([\{username:\cf2 \strokec2 null\cf0 \strokec4 \}]);\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [userMsg, setUserMsg] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [userClass, setUserClass] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [progressWidth, setProgressWidth] = useState(\{width:\cf2 \strokec2 null\cf0 \strokec4 \});\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [strengthColor, setStrengthColor] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [passwordMsg, setPasswordMsg] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\cb3  \cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadUsers()\{\cb1 \
+\cb3         axios.get(\cf5 \strokec5 'users.json'\cf0 \strokec4 )\cb1 \
+\cb3         .then(response\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             setUsers(response.data);\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3         LoadUsers();\cb1 \
+\cb3     \},[])\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  verifyUser(e)\{\cb1 \
+\cb3         \cf2 \strokec2 for\cf0 \strokec4 (\cf2 \strokec2 var\cf0 \strokec4  user \cf2 \strokec2 of\cf0 \strokec4  users)\cb1 \
+\cb3         \{\cb1 \
+\cb3             \cf2 \strokec2 if\cf0 \strokec4 (user.username===e.target.value)\{\cb1 \
+\cb3                 setUserMsg(\cf5 \strokec5 'User Name Taken - Try Another'\cf0 \strokec4 );\cb1 \
+\cb3                 setUserClass(\cf5 \strokec5 'text-danger'\cf0 \strokec4 );\cb1 \
+\cb3                 \cf2 \strokec2 break\cf0 \strokec4 ;\cb1 \
+\cb3             \} \cf2 \strokec2 else\cf0 \strokec4  \{\cb1 \
+\cb3                 setUserMsg(\cf5 \strokec5 'User Name Available'\cf0 \strokec4 );\cb1 \
+\cb3                 setUserClass(\cf5 \strokec5 'text-success'\cf0 \strokec4 );\cb1 \
+\cb3             \}\cb1 \
+\cb3         \}\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  VerifyPassword(e)\{\cb1 \
+\cb3         \cf2 \strokec2 if\cf0 \strokec4 (e.target.value.match(\cf6 \strokec6 /(?=.\cf0 \strokec4 *\cf6 \strokec6 [A-Z])\\w\cf0 \strokec4 \{4,15\}\cf6 \strokec6 /\cf0 \strokec4 )) \{\cb1 \
+\cb3                 \cf7 \strokec7 // strong\cf0 \cb1 \strokec4 \
+\cb3                 setProgressWidth(\{width:\cf5 \strokec5 '100%'\cf0 \strokec4 \})\cb1 \
+\cb3                 setStrengthColor(\cf5 \strokec5 'bg-success'\cf0 \strokec4 );\cb1 \
+\cb3                 setPasswordMsg(\cf5 \strokec5 'Strong Password'\cf0 \strokec4 );\cb1 \
+\cb3         \} \cf2 \strokec2 else\cf0 \strokec4  \{\cb1 \
+\cb3             \cf2 \strokec2 if\cf0 \strokec4 (e.target.value.length<\cf8 \strokec8 4\cf0 \strokec4 )\{\cb1 \
+\cb3                 \cf7 \strokec7 // poor \cf0 \cb1 \strokec4 \
+\cb3                 setProgressWidth(\{width:\cf5 \strokec5 '30%'\cf0 \strokec4 \})\cb1 \
+\cb3                 setStrengthColor(\cf5 \strokec5 'bg-danger'\cf0 \strokec4 );\cb1 \
+\cb3                 setPasswordMsg(\cf5 \strokec5 'Poor Password'\cf0 \strokec4 );\cb1 \
+\cb3             \} \cf2 \strokec2 else\cf0 \strokec4  \{\cb1 \
+\cb3                 \cf7 \strokec7 // weak\cf0 \cb1 \strokec4 \
+\cb3                 setProgressWidth(\{width:\cf5 \strokec5 '70%'\cf0 \strokec4 \});\cb1 \
+\cb3                 setStrengthColor(\cf5 \strokec5 'bg-warning'\cf0 \strokec4 );\cb1 \
+\cb3                 setPasswordMsg(\cf5 \strokec5 'Weak Password'\cf0 \strokec4 );\cb1 \
+\cb3             \}\cb1 \
+\cb3         \}\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf9 \strokec9 <div\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid p-4"\cf9 \strokec9 >\cf0 \cb1 \strokec4 \
+\cb3             \cf9 \strokec9 <h3>\cf0 \strokec4 Register User\cf9 \strokec9 </h3>\cf0 \cb1 \strokec4 \
+\cb3             \cf9 \strokec9 <dl\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf5 \strokec5 "w-25"\cf9 \strokec9 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 <dt>\cf0 \strokec4 User Name\cf9 \strokec9 </dt>\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 <dd><input\cf0 \strokec4  \cf10 \strokec10 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf5 \strokec5 "form-control"\cf0 \strokec4  \cf10 \strokec10 onKeyUp\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 verifyUser\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 <dd\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 userClass\cf2 \strokec2 \}\cf9 \strokec9 >\cf2 \strokec2 \{\cf0 \strokec4 userMsg\cf2 \strokec2 \}\cf9 \strokec9 </dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 <dt>\cf0 \strokec4 Password\cf9 \strokec9 </dt>\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 <dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf9 \strokec9 <input\cf0 \strokec4  \cf10 \strokec10 onKeyUp\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 VerifyPassword\cf2 \strokec2 \}\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf5 \strokec5 "form-control"\cf0 \strokec4  \cf10 \strokec10 type\cf0 \strokec4 =\cf5 \strokec5 "password"\cf0 \strokec4  \cf9 \strokec9 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 </dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 <dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf9 \strokec9 <div\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf5 \strokec5 "progress"\cf9 \strokec9 >\cf0 \cb1 \strokec4 \
+\cb3                       \cf9 \strokec9 <div\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf2 \strokec2 \{\cf5 \strokec5 `progress-bar text-white progress-bar-striped progress-bar-animated \cf2 \strokec2 $\{\cf0 \strokec4 strengthColor\cf2 \strokec2 \}\cf5 \strokec5 `\cf2 \strokec2 \}\cf0 \strokec4  \cf10 \strokec10 style\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 progressWidth\cf2 \strokec2 \}\cf9 \strokec9 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf2 \strokec2 \{\cf0 \strokec4 passwordMsg\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                       \cf9 \strokec9 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf9 \strokec9 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf9 \strokec9 </dd>\cf0 \cb1 \strokec4 \
+\cb3             \cf9 \strokec9 </dl>\cf0 \strokec4         \cb1 \
+\cb3         \cf9 \strokec9 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+ 
+\f0\b 3. Button Events\
+		
+\f1\b0 onClick	\
+		onDoubleClick\
+		onContextMenu\
+		onSelectStart \
+\
+	  - Button events can handle various interactions, but require actual DOM \
+		events to manage browser actions. \
+	\
+						document.oncontextmenu\
+						document.onselectstart \
+						document.oncut \
+		\
+	  - You can disable any event by configuring a function that returns false. \
+\
+						function handle()\
+						\{\
+							 document.actualdomevent = function() \{\
+									return false;\
+							\}	\
+						\}\
+\
+    Ex:\
+	  button-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  ButtonDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleDoubleClick()\{\cb1 \
+\cb3         window.open(\cf5 \strokec5 'iphone-pink.png'\cf0 \strokec4 ,\cf5 \strokec5 'iPhone'\cf0 \strokec4 ,\cf5 \strokec5 'width=300 height=400'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleContextMenu()\{\cb1 \
+\cb3         document.oncontextmenu = ()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             alert(\cf5 \strokec5 'Right Click Not Allowed'\cf0 \strokec4 );\cb1 \
+\cb3             \cf2 \strokec2 return\cf0 \strokec4  \cf2 \strokec2 false\cf0 \strokec4 ;\cb1 \
+\cb3         \}\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf9 \strokec9 <div\cf0 \strokec4  \cf10 \strokec10 onContextMenu\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleContextMenu\cf2 \strokec2 \}\cf0 \strokec4  \cf10 \strokec10 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid p-4"\cf9 \strokec9 >\cf0 \cb1 \strokec4 \
+\cb3              \cf9 \strokec9 <h1>\cf0 \strokec4 Highly Confidential\cf9 \strokec9 </h1>\cf0 \cb1 \strokec4 \
+\cb3              \cf9 \strokec9 <p>\cf0 \strokec4 Right click not allowed on this page\cf9 \strokec9 </p>\cf0 \cb1 \strokec4 \
+\cb3              \cf9 \strokec9 <img\cf0 \strokec4  \cf10 \strokec10 onDoubleClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleDoubleClick\cf2 \strokec2 \}\cf0 \strokec4  \cf10 \strokec10 src\cf0 \strokec4 =\cf5 \strokec5 "iphone-pink.png"\cf0 \strokec4  \cf10 \strokec10 width\cf0 \strokec4 =\cf5 \strokec5 "50"\cf0 \strokec4  \cf10 \strokec10 height\cf0 \strokec4 =\cf5 \strokec5 "50"\cf0 \strokec4  \cf9 \strokec9 />\cf0 \cb1 \strokec4 \
+\cb3              \cf9 \strokec9 <p>\cf0 \strokec4 Double Click to View Large\cf9 \strokec9 </p>\cf0 \cb1 \strokec4 \
+\
+\cb3         \cf9 \strokec9 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	\
+\
+\
+\
+\
+\
+\
+}

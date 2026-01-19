@@ -1,0 +1,252 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red255\green255\blue255;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;\red9\green60\blue148;\red19\green118\blue70;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;\cssrgb\c1569\c31765\c64706;\cssrgb\c3529\c52549\c34510;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0 									Javascript Module System\
+  
+\f1\b0 - Module refers to a portion of code.\
+  - Modular refers to part-by-part. \
+  - It allows to use only the required code for application.\
+  - It makes the application light weight and faster. \
+  - Technically every Javascript file is considered as a module. \
+\
+						home.js	=> home module\
+						index.js   => index module\
+\
+  - A module in Javascript comprises of \
+\
+			a) Variables\
+			b) Functions\
+			c) Classes \
+\
+  - Module members are not accessible outside the module scope.\
+  - You have to mark them as \'93export\'94 in order to import and use in any location.\
+\
+			export var title = \'93Welcome\'94;\
+			export function name() \{ \}\
+			export class Name \{ \}\
+\
+  - Importing a member from module depends on module system.\
+  - Javascript have various module systems like\
+			a) Common JS\
+			b) ESModule\
+			c) UMD (Universal Module Distribution)\
+			d) AMD (Asynchronous Module Distribution)\
+  - Javascript inside browser uses \'93ESModule\'94. \
+			\
+			// ESModule, UMD, AMD\
+			import \{ varName, funName, className \} from \'93module.js\'94;\
+	\
+			// Common JS\
+			const refName = require(\'93module.js\'94);\
+			refName.varName\
+			refName.funName\
+\
+  	- You have to export a member while declaring. \
+	- If you want to export after declaration, then it must a 
+\f0\b default export.
+\f1\b0  \
+\
+			var title = \'93Welcome\'94;\
+			export default title;\
+\
+	- Every module can have only one default export. \
+	- You can import default export outside the import block. \
+	\
+			  import \{ title \}  from  \'93home.js\'94;         // invalid if title is default \
+			  import  title  from \'93home.js\'94;             //  valid for default members\
+\
+	- You can import default members with others, but make sure that default is\
+	   the first import. \
+	\
+			  import  \{ others \} , title  from \'93home.js\'94;     // invalid \
+			  import  title, \{ others \} from \'93home.js\'94;       // valid \
+\
+	- If you want to import all members from a module then you have to use\
+	  aliasing method. \
+\
+				import   * as  aliasName   from \'93home.js\'94;\
+		\
+				aliasName.varName;\
+				aliasName.funName;\
+				aliasName.className; \
+\
+	- You can import members from multiple modules. \
+	- If different modules have same name members then it leads to ambiguity. \
+	- You can handle ambiguity issues by aliasing. \
+\
+				import  \{  title as  homeTitle \} from \'93home.js\'94;\
+				import  \{  title as  loginTitle \} from \'93login.js\'94;\
+Ex:\
+	home.js\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\cf3 \cb4 \strokec3 export\cf0 \strokec2  \cf3 \strokec3 function\cf0 \strokec2  title()\{\cb1 \
+\cb4     \cf3 \strokec3 return\cf0 \strokec2  \cf5 \strokec5 "Home Page"\cf0 \strokec2 ;\cb1 \
+\cb4 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	login.js\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\cf3 \cb4 \strokec3 export\cf0 \strokec2  \cf3 \strokec3 function\cf0 \strokec2  title()\{\cb1 \
+\cb4     \cf3 \strokec3 return\cf0 \strokec2  \cf5 \strokec5 "Login Page"\cf0 \strokec2 ;\cb1 \
+\cb4 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	home.html\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf6 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 <!DOCTYPE\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 html\cf6 \strokec6 >\cf0 \cb1 \strokec2 \
+\cf6 \cb4 \strokec6 <html\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 lang\cf0 \cb4 \strokec2 =\cf3 \strokec3 "en"\cf6 \cb4 \strokec6 >\cf0 \cb1 \strokec2 \
+\cf6 \cb4 \strokec6 <head>\cf0 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4     \cf6 \cb4 \strokec6 <meta\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 charset\cf0 \cb4 \strokec2 =\cf3 \strokec3 "UTF-8"\cf6 \cb4 \strokec6 >\cf0 \cb1 \strokec2 \
+\cb4     \cf6 \cb4 \strokec6 <meta\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 name\cf0 \cb4 \strokec2 =\cf3 \strokec3 "viewport"\cf0 \strokec2  \cf7 \cb4 \strokec7 content\cf0 \cb4 \strokec2 =\cf3 \strokec3 "width=device-width, initial-scale=1.0"\cf6 \cb4 \strokec6 >\cf0 \cb1 \strokec2 \
+\cb4     \cf6 \cb4 \strokec6 <title>\cf0 \cb4 \strokec2 Document\cf6 \cb4 \strokec6 </title>\cf0 \cb1 \strokec2 \
+\cb4     \cf6 \cb4 \strokec6 <script\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 type\cf0 \cb4 \strokec2 =\cf3 \strokec3 "module"\cf6 \cb4 \strokec6 >\cf0 \cb1 \strokec2 \
+\cb4          \cf3 \strokec3 import\cf0 \strokec2  \{ title \cf3 \strokec3 as\cf0 \strokec2  homeTitle \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "./home.js"\cf0 \strokec2 ;\cb1 \
+\cb4          \cf3 \strokec3 import\cf0 \strokec2  \{ title \cf3 \strokec3 as\cf0 \strokec2  loginTitle \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "./login.js"\cf0 \strokec2 ;\cb1 \
+\
+\cb4          document.querySelector(\cf5 \strokec5 "h1"\cf0 \strokec2 ).textContent = loginTitle();\cb1 \
+\cb4     \cf6 \cb4 \strokec6 </script>\cf0 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb4 \strokec6 </head>\cf0 \cb1 \strokec2 \
+\cf6 \cb4 \strokec6 <body>\cf0 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4     \cf6 \cb4 \strokec6 <h1></h1>\cf0 \cb1 \strokec2 \
+\cb4     \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb4 \strokec6 </body>\cf0 \cb1 \strokec2 \
+\cf6 \cb4 \strokec6 </html>\cf0 \cb1 \strokec2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	Note: Clean up  \'93index.css\'94, \'93app.css\'94 code in your project.\
+			  [Make the files empty]\
+\
+	
+\f0\b Components in React 19 App:\
+	\
+	
+\f1\b0 1. Every component is a function and must be configured inside \'93.jsx\'94 file.\
+	2. Every component can have 3 files\
+					a) .jsx			for design and logic\
+					b) .css			for styles\
+					c) .test.js		for testing\
+						  (or)\
+						.spec.js	for testing\
+\
+	3. Make sure that all component files are in \'93src\'94 folder. \
+	4. Better to create a folder for every component. \
+\
+						
+\f0\b src \
+						|_ components\
+							 |_ login\
+							 |	 |_
+\f1\b0  login.js\
+							 
+\f0\b |
+\f1\b0 	 |_ login.css\
+							 
+\f0\b |
+\f1\b0 	 |_ login.test.js\
+							 
+\f0\b |\
+							 |_register\
+
+\f1\b0 								|_ register.js\
+								|_ register.css\
+								|_ register.spec.js\
+\
+	5. CSS file is imported into \'93.jsx\'94 \
+	6. CSS file can\'92t use type selectors for styling. Type selector applies the \
+		styles for all occurrences across components. \
+	7. It is recommended  to use Id or class selectors. \
+\
+Ex:\
+ 1. Components/login/login.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 import\cf0 \strokec2  \cf5 \strokec5 './login.css'\cf0 \strokec2 ;\cb1 \
+\cf3 \cb4 \strokec3 export\cf0 \strokec2  \cf3 \strokec3 function\cf0 \strokec2  Login()\{\cb1 \
+\cb4     \cf3 \strokec3 return\cf0 \strokec2 (\cb1 \
+\cb4         \cf6 \cb4 \strokec6 <div\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 'login-container'\cf6 \cb4 \strokec6 >\cf0 \cb1 \strokec2 \
+\cb4             \cf6 \cb4 \strokec6 <form\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 'form-container'\cf6 \cb4 \strokec6 >\cf0 \cb1 \strokec2 \
+\cb4             \cf6 \cb4 \strokec6 <h3>\cf0 \cb4 \strokec2 User Login\cf6 \cb4 \strokec6 </h3>\cf0 \cb1 \strokec2 \
+\cb4             \cf6 \cb4 \strokec6 <dl>\cf0 \cb1 \strokec2 \
+\cb4                 \cf6 \cb4 \strokec6 <dt>\cf0 \cb4 \strokec2 User Name\cf6 \cb4 \strokec6 </dt>\cf0 \cb1 \strokec2 \
+\cb4                 \cf6 \cb4 \strokec6 <dd><input\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 type\cf0 \cb4 \strokec2 =\cf5 \strokec5 "text"\cf0 \strokec2  \cf6 \cb4 \strokec6 /></dd>\cf0 \cb1 \strokec2 \
+\cb4                 \cf6 \cb4 \strokec6 <dt>\cf0 \cb4 \strokec2 Password\cf6 \cb4 \strokec6 </dt>\cf0 \cb1 \strokec2 \
+\cb4                 \cf6 \cb4 \strokec6 <dd><input\cf0 \cb4 \strokec2  \cf7 \cb4 \strokec7 type\cf0 \cb4 \strokec2 =\cf5 \strokec5 "password"\cf6 \cb4 \strokec6 /></dd>\cf0 \cb1 \strokec2 \
+\cb4             \cf6 \cb4 \strokec6 </dl>\cf0 \cb1 \strokec2 \
+\cb4             \cf6 \cb4 \strokec6 <button>\cf0 \cb4 \strokec2 Login\cf6 \cb4 \strokec6 </button>\cf0 \cb1 \strokec2 \
+\cb4         \cf6 \cb4 \strokec6 </form>\cf0 \cb1 \strokec2 \
+\cb4         \cf6 \cb4 \strokec6 </div>\cf0 \cb1 \strokec2 \
+\cb4     )\cb1 \
+\cb4 \}\cb1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 2. Components/login/login.css\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf6 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 .login-container\cf0 \cb4 \strokec2  \{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4     \cf7 \cb4 \strokec7 display\cf0 \cb4 \strokec2 : \cf8 \cb4 \strokec8 flex\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4     \cf7 \cb4 \strokec7 justify-content\cf0 \cb4 \strokec2 : \cf8 \cb4 \strokec8 center\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4     \cf7 \cb4 \strokec7 align-items\cf0 \cb4 \strokec2 : \cf8 \cb4 \strokec8 center\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4     \cf7 \cb4 \strokec7 height\cf0 \cb4 \strokec2 : \cf9 \cb4 \strokec9 100vh\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4 \}\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb4 \strokec6 .form-container\cf0 \cb4 \strokec2  \{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4     \cf7 \cb4 \strokec7 border\cf0 \cb4 \strokec2 : \cf9 \cb4 \strokec9 2px\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 solid\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 gray\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4     \cf7 \cb4 \strokec7 padding\cf0 \cb4 \strokec2 : \cf9 \cb4 \strokec9 10px\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4     \cf7 \cb4 \strokec7 border-radius\cf0 \cb4 \strokec2 : \cf9 \cb4 \strokec9 20px\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4     \cf7 \cb4 \strokec7 box-shadow\cf0 \cb4 \strokec2 : \cf9 \cb4 \strokec9 5px\cf0 \cb4 \strokec2  \cf9 \cb4 \strokec9 2px\cf0 \cb4 \strokec2  \cf9 \cb4 \strokec9 2px\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 black\cf0 \cb4 \strokec2 ;\cb1 \
+\cb4 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+3. Src/main.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 import\cf0 \strokec2  \{ Login \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 './components/login/login.jsx'\cf0 \cb1 \strokec2 \
+\
+\cb4 createRoot(document.getElementById(\cf5 \strokec5 'root'\cf0 \strokec2 )).render(\cb1 \
+\cb4   \cf6 \cb4 \strokec6 <StrictMode>\cf0 \cb1 \strokec2 \
+\cb4     \cf6 \cb4 \strokec6 <Login\cf0 \cb4 \strokec2  \cf6 \cb4 \strokec6 />\cf0 \cb1 \strokec2 \
+\cb4   \cf6 \cb4 \strokec6 </StrictMode>\cf0 \cb4 \strokec2 ,\cb1 \
+\cb4 )\cb1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+\
+			}

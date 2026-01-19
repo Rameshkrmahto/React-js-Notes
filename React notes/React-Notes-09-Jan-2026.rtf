@@ -1,0 +1,216 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red0\green0\blue0;\red9\green60\blue148;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;\red19\green118\blue70;\red0\green0\blue255;
+}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;\cssrgb\c1569\c31765\c64706;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;\cssrgb\c3529\c52549\c34510;\cssrgb\c0\c0\c100000;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0  React Synthetic Events\
+ \
+ 1. Mouse Events\
+		
+\f1\b0 onMouseOver			: actions when mouse pointer is over element.\
+		onMouseOut				: when mouse pointer moves out of element.\
+		onMouseDown 			: when user hold down mouse button on element\
+		onMouseUp				: when button is released on element.\
+		onMouseMove 			: while moving mouse pointer\
+\
+ 	  - The popular properties used with mouse events\
+		 a) clientX\
+		 b) clientY \
+	\
+  Ex:  MouseOver \
+\
+	1. public/mobiles.json\
+\
+	  
+\f2\fs46 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 [\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb2     \{\cb1 \
+\cb2         \cf4 \cb2 \strokec4 "image"\cf0 \cb2 \strokec3 : \cf5 \strokec5 "mobile-1.png"\cf0 \cb1 \strokec3 \
+\cb2     \},\cb1 \
+\cb2     \{\cb1 \
+\cb2         \cf4 \cb2 \strokec4 "image"\cf0 \cb2 \strokec3 : \cf5 \strokec5 "mobile-2.png"\cf0 \cb1 \strokec3 \
+\cb2     \},\cb1 \
+\cb2     \{\cb1 \
+\cb2         \cf4 \cb2 \strokec4 "image"\cf0 \cb2 \strokec3 : \cf5 \strokec5 "mobile-3.png"\cf0 \cb1 \strokec3 \
+\cb2     \},\cb1 \
+\cb2     \{\cb1 \
+\cb2         \cf4 \cb2 \strokec4 "image"\cf0 \cb2 \strokec3 : \cf5 \strokec5 "mobile-4.png"\cf0 \cb1 \strokec3 \
+\cb2     \}\cb1 \
+\cb2 ]\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	 2. Components/mouse-demo/mouse-demo.css\
+\
+		
+\f2\fs46 \cf6 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 .mobile-container\cf0 \strokec3  \{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb2     \cf7 \strokec7 border\cf0 \strokec3 :\cf8 \cb2 \strokec8 4px\cf0 \cb2 \strokec3  \cf4 \cb2 \strokec4 solid\cf0 \cb2 \strokec3  \cf4 \cb2 \strokec4 gray\cf0 \cb2 \strokec3 ;\cb1 \
+\cb2 \}\cb1 \
+\cf6 \cb2 \strokec6 .mobile-container:hover\cf0 \strokec3  \{\cb1 \
+\cb2     \cf7 \strokec7 border\cf0 \strokec3 :\cf8 \cb2 \strokec8 4px\cf0 \cb2 \strokec3  \cf4 \cb2 \strokec4 solid\cf0 \cb2 \strokec3  \cf4 \cb2 \strokec4 blue\cf0 \cb2 \strokec3 ;\cb1 \
+\cb2     \cf7 \strokec7 cursor\cf0 \strokec3 : \cf4 \cb2 \strokec4 grab\cf0 \cb2 \strokec3 ;\cb1 \
+\cb2 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	 3. Components/mouse-demo/mouse-demo.jsx\
+ \
+
+\f2\fs46 \cf9 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 import\cf0 \strokec3  axios \cf9 \strokec9 from\cf0 \strokec3  \cf5 \strokec5 "axios"\cf0 \strokec3 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb2 \strokec9 import\cf0 \strokec3  \{ useEffect, useState \} \cf9 \strokec9 from\cf0 \strokec3  \cf5 \strokec5 "react"\cf0 \cb1 \strokec3 \
+\cf9 \cb2 \strokec9 import\cf0 \strokec3  \cf5 \strokec5 './mouse-demo.css'\cf0 \strokec3 ;\cb1 \
+\
+\cf9 \cb2 \strokec9 export\cf0 \strokec3  \cf9 \strokec9 function\cf0 \strokec3  MouseDemo()\{\cb1 \
+\
+\cb2     \cf9 \strokec9 const\cf0 \strokec3  [mobiles, setMobiles ] = useState([\{image:\cf9 \strokec9 null\cf0 \strokec3 \}]);\cb1 \
+\cb2     \cf9 \strokec9 const\cf0 \strokec3  [previewImage, setPreviewImage] = useState(\cf5 \strokec5 'mobile-1.png'\cf0 \strokec3 );\cb1 \
+\
+\cb2     \cf9 \strokec9 function\cf0 \strokec3  LoadMobiles()\{\cb1 \
+\cb2         axios.get(\cf5 \strokec5 'mobiles.json'\cf0 \strokec3 )\cb1 \
+\cb2         .then(response\cf9 \strokec9 =>\cf0 \strokec3 \{\cb1 \
+\cb2             setMobiles(response.data);\cb1 \
+\cb2         \})\cb1 \
+\cb2     \}\cb1 \
+\cb2     useEffect(()\cf9 \strokec9 =>\cf0 \strokec3 \{\cb1 \
+\cb2         LoadMobiles();\cb1 \
+\cb2     \},[])\cb1 \
+\
+\cb2     \cf9 \strokec9 function\cf0 \strokec3  handleMouseOver(e)\{\cb1 \
+\cb2         setPreviewImage(e.target.src);\cb1 \
+\cb2     \}\cb1 \
+\
+\cb2     \cf9 \strokec9 return\cf0 \strokec3 (\cb1 \
+\cb2         \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "container-fluid p-3"\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2             \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "row mt-4"\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2                 \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "col-2"\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2                     \cf9 \strokec9 \{\cf0 \cb1 \strokec3 \
+\cb2                         mobiles.map(mobile\cf9 \strokec9 =>\cf0 \cb1 \strokec3 \
+\cb2                             \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 key\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 mobile.image\cf9 \strokec9 \}\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "my-4 mobile-container"\cf0 \strokec3  \cf7 \strokec7 style\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 \{width:\cf5 \strokec5 '100px'\cf0 \strokec3 \}\cf9 \strokec9 \}\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2                                 \cf6 \strokec6 <img\cf0 \strokec3  \cf7 \strokec7 src\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 mobile.image\cf9 \strokec9 \}\cf0 \strokec3  \cf7 \strokec7 onMouseOver\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 handleMouseOver\cf9 \strokec9 \}\cf0 \strokec3  \cf7 \strokec7 width\cf0 \strokec3 =\cf5 \strokec5 "100%"\cf0 \strokec3  \cf7 \strokec7 height\cf0 \strokec3 =\cf5 \strokec5 "100"\cf0 \strokec3  \cf6 \strokec6 />\cf0 \cb1 \strokec3 \
+\cb2                             \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2                         )\cb1 \
+\cb2                     \cf9 \strokec9 \}\cf0 \cb1 \strokec3 \
+\cb2                 \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2                 \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "col-10"\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2                     \cf6 \strokec6 <img\cf0 \strokec3  \cf7 \strokec7 width\cf0 \strokec3 =\cf5 \strokec5 "400"\cf0 \strokec3  \cf7 \strokec7 height\cf0 \strokec3 =\cf5 \strokec5 "500"\cf0 \strokec3  \cf7 \strokec7 src\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 previewImage\cf9 \strokec9 \}\cf0 \strokec3   \cf6 \strokec6 />\cf0 \cb1 \strokec3 \
+\cb2                 \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2             \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2         \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2     )\cb1 \
+\cb2 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+ Ex: MouseUp & Down\
+\
+  Mouse-animation.css\
+\
+	
+\f2\fs46 \cf9 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 @keyframes\cf0 \strokec3  \cf7 \strokec7 Spin\cf0 \strokec3  \{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb2     from \{\cb1 \
+\cb2         \cf7 \strokec7 transform\cf0 \strokec3 : rotate(\cf8 \cb2 \strokec8 0deg\cf0 \cb2 \strokec3 ) scale(\cf8 \cb2 \strokec8 1\cf0 \cb2 \strokec3 );\cb1 \
+\cb2     \}\cb1 \
+\cb2     to \{\cb1 \
+\cb2         \cf7 \strokec7 transform\cf0 \strokec3 : rotate(\cf8 \cb2 \strokec8 360deg\cf0 \cb2 \strokec3 ) scale(\cf8 \cb2 \strokec8 2\cf0 \cb2 \strokec3 );\cb1 \
+\cb2     \}\cb1 \
+\cb2 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 	\
+  Mouse-animation.jsx\
+\
+ 
+\f2\fs46 \cf9 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 import\cf0 \strokec3  \{ useState \} \cf9 \strokec9 from\cf0 \strokec3  \cf5 \strokec5 'react'\cf0 \strokec3 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb2 \strokec9 import\cf0 \strokec3  \cf5 \strokec5 './mouse-animation.css'\cf0 \strokec3 ;\cb1 \
+\
+\cf9 \cb2 \strokec9 export\cf0 \strokec3  \cf9 \strokec9 function\cf0 \strokec3  MouseAnimation()\{\cb1 \
+\
+\cb2     \cf9 \strokec9 const\cf0 \strokec3  [animationObject, setAnimationObject] = useState(\{animationName:\cf5 \strokec5 'Spin'\cf0 \strokec3 , animationDuration:\cf5 \strokec5 '3s'\cf0 \strokec3 , animationIterationCount:\cf5 \strokec5 'infinite'\cf0 \strokec3 , animationTimingFunction:\cf5 \strokec5 'linear'\cf0 \strokec3 \})\cb1 \
+\
+\cb2     \cf9 \strokec9 function\cf0 \strokec3  handleMouseDown()\{\cb1 \
+\cb2         setAnimationObject(\{animationName:\cf5 \strokec5 'Spin'\cf0 \strokec3 , animationDuration:\cf5 \strokec5 '500ms'\cf0 \strokec3 , animationIterationCount:\cf5 \strokec5 'infinite'\cf0 \strokec3 , animationTimingFunction:\cf5 \strokec5 'linear'\cf0 \strokec3 \})\cb1 \
+\cb2     \}\cb1 \
+\cb2     \cf9 \strokec9 function\cf0 \strokec3  handleMouseUp()\{\cb1 \
+\cb2         setAnimationObject(\{animationName:\cf5 \strokec5 'Spin'\cf0 \strokec3 , animationDuration:\cf5 \strokec5 '3s'\cf0 \strokec3 , animationIterationCount:\cf5 \strokec5 'infinite'\cf0 \strokec3 , animationTimingFunction:\cf5 \strokec5 'linear'\cf0 \strokec3 \})\cb1 \
+\cb2     \}\cb1 \
+\
+\cb2     \cf9 \strokec9 return\cf0 \strokec3 (\cb1 \
+\cb2         \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "d-flex justify-content-center align-items-center"\cf0 \strokec3  \cf7 \strokec7 style\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 \{height:\cf5 \strokec5 '100vh'\cf0 \strokec3 \}\cf9 \strokec9 \}\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2              \cf6 \strokec6 <img\cf0 \strokec3  \cf7 \strokec7 onMouseDown\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 handleMouseDown\cf9 \strokec9 \}\cf0 \strokec3  \cf7 \strokec7 onMouseUp\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 handleMouseUp\cf9 \strokec9 \}\cf0 \strokec3  \cf7 \strokec7 src\cf0 \strokec3 =\cf5 \strokec5 "react.svg"\cf0 \strokec3  \cf7 \strokec7 style\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 animationObject\cf9 \strokec9 \}\cf0 \strokec3   \cf7 \strokec7 width\cf0 \strokec3 =\cf5 \strokec5 "200"\cf0 \strokec3  \cf7 \strokec7 height\cf0 \strokec3 =\cf5 \strokec5 "200"\cf0 \strokec3  \cf6 \strokec6 />\cf0 \cb1 \strokec3 \
+\cb2         \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2     )\cb1 \
+\cb2 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+ Ex: Mouse Move\
+  mouse-move.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf9 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 import\cf0 \strokec3  \{ useState \} \cf9 \strokec9 from\cf0 \strokec3  \cf5 \strokec5 "react"\cf0 \cb1 \strokec3 \
+\
+\cf9 \cb2 \strokec9 export\cf0 \strokec3  \cf9 \strokec9 function\cf0 \strokec3  MouseMove()\{\cb1 \
+\
+\cb2     \cf9 \strokec9 const\cf0 \strokec3  [styleObj, setStyleObject] = useState(\{position:\cf5 \strokec5 'fixed'\cf0 \strokec3 , top:\cf5 \strokec5 ''\cf0 \strokec3 , left:\cf5 \strokec5 ''\cf0 \strokec3 \});\cb1 \
+\
+\cb2     \cf9 \strokec9 function\cf0 \strokec3  handleMouseMove(e)\{\cb1 \
+\cb2         setStyleObject(\{position:\cf5 \strokec5 'fixed'\cf0 \strokec3 , top:\cf5 \strokec5 `\cf9 \strokec9 $\{\cf0 \strokec3 e.clientY\cf9 \strokec9 \}\cf5 \strokec5 px`\cf0 \strokec3 , left:\cf5 \strokec5 `\cf9 \strokec9 $\{\cf0 \strokec3 e.clientX\cf9 \strokec9 \}\cf5 \strokec5 px`\cf0 \strokec3 \});\cb1 \
+\cb2     \}\cb1 \
+\
+\cb2     \cf9 \strokec9 return\cf0 \strokec3 (\cb1 \
+\cb2         \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 onMouseMove\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 handleMouseMove\cf9 \strokec9 \}\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2             \cf6 \strokec6 <div\cf0 \strokec3  \cf7 \strokec7 style\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 \{height:\cf5 \strokec5 '1000px'\cf0 \strokec3 \}\cf9 \strokec9 \}\cf6 \strokec6 >\cf0 \cb1 \strokec3 \
+\cb2                 \cf6 \strokec6 <p\cf0 \strokec3  \cf7 \strokec7 className\cf0 \strokec3 =\cf5 \strokec5 "fs-2"\cf6 \strokec6 >\cf0 \strokec3 Move mouse pointer to test\cf6 \strokec6 </p>\cf0 \cb1 \strokec3 \
+\cb2             \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2             \cf6 \strokec6 <img\cf0 \strokec3  \cf7 \strokec7 src\cf0 \strokec3 =\cf5 \strokec5 "flag.gif"\cf0 \strokec3  \cf7 \strokec7 style\cf0 \strokec3 =\cf9 \strokec9 \{\cf0 \strokec3 styleObj\cf9 \strokec9 \}\cf0 \strokec3  \cf7 \strokec7 width\cf0 \strokec3 =\cf5 \strokec5 "50"\cf0 \strokec3  \cf7 \strokec7 height\cf0 \strokec3 =\cf5 \strokec5 "50"\cf0 \strokec3  \cf6 \strokec6 />\cf0 \cb1 \strokec3 \
+\cb2         \cf6 \strokec6 </div>\cf0 \cb1 \strokec3 \
+\cb2     )\cb1 \
+\cb2 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+ 
+\f0\b 2. Keyboard Events
+\f1\b0 \
+		onKeyUp\
+		onKeyDown	\
+		onKeyPress [deprecated]\
+\
+  		- 
+\f0\b KeyUp & KeyDown 
+\f1\b0 are good for handling actions related to chars that\
+		  user input. \
+		- 
+\f0\b KeyPress 
+\f1\b0 is good for handling character ASCII code. However it is \
+		  deprecated and character code can be accessed using \'93charCodeAt()\'94\
+		  function.\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

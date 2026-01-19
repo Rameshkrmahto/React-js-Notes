@@ -1,0 +1,248 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red107\green0\blue1;\red255\green255\blue255;\red0\green0\blue0;
+\red220\green0\blue5;\red0\green0\blue255;\red9\green60\blue148;\red19\green118\blue70;\red144\green1\blue18;
+}
+{\*\expandedcolortbl;;\cssrgb\c50196\c0\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c89804\c0\c0;\cssrgb\c0\c0\c100000;\cssrgb\c1569\c31765\c64706;\cssrgb\c3529\c52549\c34510;\cssrgb\c63922\c8235\c8235;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0 	Creating Virtual DOM and Rendering into Actual DOM:\
+	\
+	1. Upto React 17x version\
+\
+			
+\f1\b0 ReactDOM.render(\'93Markup | Component\'94, \
+											  document.getElementById(\'93root\'94)\
+											)\
+\
+	
+\f0\b 2. React 18x & 19x version\
+\
+			
+\f1\b0 const root = ReactDOM.createRoot(document.getElementById(\'93root\'94));\
+			root.render(\'93Markup | Component\'94);\
+\
+	\
+\
+	
+\f0\b Download and Install Library required for project:\
+\
+	1. Run the following commands in terminal \
+\
+				
+\f1\b0 > npm   install    react@18   --save\
+				> npm   install    react-dom@18  --save\
+				> npm   install    @babel/standalone --save\
+	\
+											(or)\
+\
+				> npm   i   react@18   react-dom@18  @babel/standalone --save\
+\
+	
+\f0\b 2. All library files are copied into \'93node_modules\'94 folder
+\f1\b0  \
+				\
+\
+	
+\f0\b 3. Link the following files to your HTML page\
+\
+		
+\f1\b0 <script  src=\'93../node_modules/react/umd/react.development.js\'94> </script>\
+		<script  src=\'93../node_modules/react-dom/umd/react-dom.development.js\'94>\
+		</script>\
+		<script  src=\'93../node_modules/@babel/standalone/babel.js\'94> </script>\
+\
+	
+\f0\b  4. Your custom script is defined in <script> block with type as\
+				
+\f1\b0 a) text/babel  (or)\
+				b) text/jsx\
+	\
+	Syntax:\
+				<script type=\'93text/babel\'94>\
+\
+				</script>\
+\
+	\
+	  
+\f0\b 											React Components
+\f1\b0 \
+	- Component comprises 3 elements\
+				a) Design\
+				b) Styles\
+				c) Logic\
+	- Design is defined using HTML.\
+	- Styles are defined with CSS.\
+	- Logic is defined with JSX or TSX. \
+	- Technically component is a Javascript\
+			a) Class\
+			b) Function\
+	- Classes are supported in React but not recommended in modern code. \
+	- React 19x version always recommends to design component with function.\
+	\
+	
+\f0\b Component Rules:\
+	
+\f1\b0 - A component must be a Javascript.\
+	- You can create using declaration or expression. \
+	- Name must start with uppercase letter. \
+		\
+	 Syntax: Declaration\
+	\
+				function Login()\
+				\{\
+				\}\
+\
+	 Syntax: Expression\
+\
+				const Login = function() \{\
+				\}\
+\
+	 - Component function can\'92t be void type.\
+	 - A component function must return a JSX element. \
+\
+				function Login()\
+				\{\
+				   return (\
+							   <div> \
+									 JSX element\
+							   </div>\
+							   )\
+				\}\
+	 - Component function can return only one fragment.\
+\
+					 return(\
+								<h1> Welcome </h1>         => invalid \
+								<p> React JS </p>\
+								)\
+				\
+					  return(\
+								<header>                         => valid\
+									<h1> </h1>              \
+									<p> </p>\
+								</header>\
+		\
+	 - Every JSX element must have end token. \
+		\
+							<img>        => invalid\
+							<img> </img>\
+							<img />\
+							<input>      => invalid\
+							<input />\
+							<input> </input>\
+							<br />\
+\
+	   - Every JSX element can use only properties not attributes. \
+		\
+				<img class=\'93attribute\'94>      => invalid\
+				document.querySelector(\'93img\'94).className;\
+				<img  className=\'93some\'94 />\
+\
+Ex:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <!DOCTYPE\cf0 \strokec4  \cf5 \strokec5 html\cf2 \strokec2 >\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 <html\cf0 \strokec4  \cf5 \strokec5 lang\cf0 \strokec4 =\cf6 \strokec6 "en"\cf2 \strokec2 >\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 <head>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <meta\cf0 \strokec4  \cf5 \strokec5 charset\cf0 \strokec4 =\cf6 \strokec6 "UTF-8"\cf2 \strokec2 >\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <meta\cf0 \strokec4  \cf5 \strokec5 name\cf0 \strokec4 =\cf6 \strokec6 "viewport"\cf0 \strokec4  \cf5 \strokec5 content\cf0 \strokec4 =\cf6 \strokec6 "width=device-width, initial-scale=1.0"\cf2 \strokec2 >\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <title>\cf0 \strokec4 Demo\cf2 \strokec2 </title>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <style>\cf0 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 nav\cf0 \strokec4  \{\cb1 \
+\cb3             \cf5 \strokec5 display\cf0 \strokec4 : \cf7 \cb3 \strokec7 flex\cf0 \cb3 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 justify-content\cf0 \strokec4 : \cf7 \cb3 \strokec7 space-between\cf0 \cb3 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 font-family\cf0 \strokec4 : \cf7 \cb3 \strokec7 Arial\cf0 \cb3 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 padding\cf0 \strokec4 : \cf8 \strokec8 20px\cf0 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 font-size\cf0 \strokec4 : \cf8 \strokec8 20px\cf0 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 border\cf0 \strokec4 :\cf8 \strokec8 1px\cf0 \strokec4  \cf7 \cb3 \strokec7 solid\cf0 \cb3 \strokec4  \cf7 \cb3 \strokec7 gray\cf0 \cb3 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 background-color\cf0 \strokec4 : \cf7 \cb3 \strokec7 black\cf0 \cb3 \strokec4 ;\cb1 \
+\cb3             \cf5 \strokec5 color\cf0 \strokec4 :\cf7 \cb3 \strokec7 white\cf0 \cb3 \strokec4 ;\cb1 \
+\cb3         \}\cb1 \
+\cb3         \cf2 \strokec2 nav\cf0 \strokec4  \cf2 \strokec2 span\cf0 \strokec4  \{\cb1 \
+\cb3             \cf5 \strokec5 margin-right\cf0 \strokec4 : \cf8 \strokec8 20px\cf0 \strokec4 ;\cb1 \
+\cb3         \}\cb1 \
+\cb3     \cf2 \strokec2 </style>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <script\cf0 \strokec4  \cf5 \strokec5 src\cf0 \strokec4 =\cf6 \strokec6 "../node_modules/react/umd/react.development.js"\cf2 \strokec2 ></script>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <script\cf0 \strokec4  \cf5 \strokec5 src\cf0 \strokec4 =\cf6 \strokec6 "../node_modules/react-dom/umd/react-dom.development.js"\cf2 \strokec2 ></script>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <script\cf0 \strokec4  \cf5 \strokec5 src\cf0 \strokec4 =\cf6 \strokec6 "../node_modules/@babel/standalone/babel.js"\cf2 \strokec2 ></script>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <script\cf0 \strokec4  \cf5 \strokec5 type\cf0 \strokec4 =\cf6 \strokec6 "text/babel"\cf2 \strokec2 >\cf0 \cb1 \strokec4 \
+\
+\cb3         \cf6 \strokec6 function\cf0 \strokec4  Navbar()\{\cb1 \
+\cb3             \cf6 \strokec6 return\cf0 \strokec4 (\cb1 \
+\cb3                 \cf2 \strokec2 <nav>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <div\cf0 \strokec4  \cf5 \strokec5 className\cf0 \strokec4 =\cf9 \strokec9 "brand-title"\cf2 \strokec2 >\cf0 \strokec4 Shopping.\cf2 \strokec2 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <span>\cf0 \strokec4  Home \cf2 \strokec2 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <span>\cf0 \strokec4  Shop \cf2 \strokec2 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <span>\cf0 \strokec4  Pages \cf2 \strokec2 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <span>\cf0 \strokec4  Offers \cf2 \strokec2 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <span>\cf0 \strokec4  Contact \cf2 \strokec2 </span>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <button>\cf0 \strokec4 Signin \cf2 \strokec2 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 </nav>\cf0 \cb1 \strokec4 \
+\cb3             )\cb1 \
+\cb3         \}\cb1 \
+\cb3         \cf6 \strokec6 function\cf0 \strokec4  NewUser()\{\cb1 \
+\cb3             \cf6 \strokec6 return\cf0 \strokec4 (\cb1 \
+\cb3                 \cf2 \strokec2 <div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <a\cf0 \strokec4  \cf5 \strokec5 href\cf0 \strokec4 =\cf9 \strokec9 "#"\cf2 \strokec2 >\cf0 \strokec4 New User? Register\cf2 \strokec2 </a>\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 </div>\cf0 \cb1 \strokec4 \
+\cb3             )\cb1 \
+\cb3         \}\cb1 \
+\
+\cb3         \cf6 \strokec6 function\cf0 \strokec4  Login()\{\cb1 \
+\cb3             \cf6 \strokec6 return\cf0 \strokec4 (\cb1 \
+\cb3                 \cf2 \strokec2 <form>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <h3>\cf0 \strokec4 User Login\cf2 \strokec2 </h3>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <dl>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <dt>\cf0 \strokec4  User Name \cf2 \strokec2 </dt>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <dd>\cf0 \strokec4  \cf2 \strokec2 <input\cf0 \strokec4  \cf5 \strokec5 type\cf0 \strokec4 =\cf9 \strokec9 "text"\cf0 \strokec4  \cf2 \strokec2 />\cf0 \strokec4  \cf2 \strokec2 </dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <dt>\cf0 \strokec4 Password\cf2 \strokec2 </dt>\cf0 \strokec4  \cb1 \
+\cb3                         \cf2 \strokec2 <dd><input\cf0 \strokec4  \cf5 \strokec5 type\cf0 \strokec4 =\cf9 \strokec9 "password"\cf0 \strokec4  \cf2 \strokec2 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 <dt>\cf0 \strokec4 Email\cf2 \strokec2 </dt>\cf0 \strokec4  \cb1 \
+\cb3                         \cf2 \strokec2 <dd><input\cf0 \strokec4  \cf5 \strokec5 type\cf0 \strokec4 =\cf9 \strokec9 "email"\cf0 \strokec4  \cf2 \strokec2 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 </dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <button>\cf0 \strokec4 Login \cf2 \strokec2 </button>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 <NewUser\cf0 \strokec4  \cf2 \strokec2 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 </form>\cf0 \cb1 \strokec4 \
+\cb3             )\cb1 \
+\cb3         \}\cb1 \
+\
+\cb3         \cf6 \strokec6 const\cf0 \strokec4  root = ReactDOM.createRoot(document.getElementById(\cf9 \strokec9 "root"\cf0 \strokec4 ));\cb1 \
+\cb3         root.render(\cb1 \
+\cb3             \cf2 \strokec2 <section>\cf0 \strokec4  \cb1 \
+\cb3                 \cf2 \strokec2 <Navbar\cf0 \strokec4  \cf2 \strokec2 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 <Login/>\cf0 \cb1 \strokec4 \
+\cb3             \cb1 \
+\cb3             \cf2 \strokec2 </section>\cf0 \cb1 \strokec4 \
+\cb3         );\cb1 \
+\cb3     \cf2 \strokec2 </script>\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 </head>\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 <body>\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 <noscript>\cf0 \strokec4  Please enable JavaScript on your browser.\cf2 \strokec2 </noscript>\cf0 \cb1 \strokec4 \
+\cb3    \cb1 \
+\cb3     \cf2 \strokec2 <div\cf0 \strokec4  \cf5 \strokec5 id\cf0 \strokec4 =\cf6 \strokec6 "root"\cf2 \strokec2 ></div>\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 </body>\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 </html>\cf0 \cb1 \strokec4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+\
+	\
+\
+\
+\
+\
+\
+\
+\
+\
+}
