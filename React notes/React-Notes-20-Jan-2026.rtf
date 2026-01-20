@@ -1,0 +1,156 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red19\green118\blue70;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0  												
+\f1\b Timer Events\
+	
+\f0\b0 - setTimeout()\
+	- clearTimeout()\
+	- setInterval()\
+	- clearInterval()\
+\
+	
+\f1\b Debounce 	\
+		
+\f0\b0 - A computing device executes tasks inside process at high speed. \
+		- A set of tasks provided to processor will execute immediately. \
+		- The process of locking a task in memory for specific duration of time\
+		   and later releasing into process is known as \'93Debounce\'94.\
+		- The events used to control debounce are:\
+				a) setTimeout()\
+				b) clearTimeout()\
+		\
+		Syntax:\
+				setTimeout(function()\{ \}, interval);\
+\
+				clearTimeout(referenceName);\
+\
+		
+\f1\b useRef() Hook:
+\f0\b0 \
+		- It configures a reference memory.\
+		- You can store any value or function into reference memory. \
+		- It is intended to use inside the process instead of rendering into UI. \
+		- It improves the performance of application while handling multiples \
+		  tasks in memory. \
+		\
+		Syntax:\
+				let   thread = useRef(null);\
+\
+		- You can configure any task using \'93current\'94 property. \
+\
+				thread.current = value / function;\
+	\
+		- You can access using \'93current\'94 thread property\
+\
+				setTimeout(thread.current);\
+\
+ Ex:\
+	debounce-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useRef, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  DebounceDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [msg, setMsg] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 let\cf0 \strokec4  thread = useRef(\cf2 \strokec2 null\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  Level1()\{\cb1 \
+\cb3         setMsg(\cf5 \strokec5 'Volume Increased : 20%'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  Level2()\{\cb1 \
+\cb3         setMsg(\cf5 \strokec5 'Volume Increased : 70%'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  Level3()\{\cb1 \
+\cb3         setMsg(\cf5 \strokec5 'Volume Full'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  VolumeUpClick()\{\cb1 \
+\cb3         setTimeout(Level1, \cf6 \strokec6 3000\cf0 \strokec4 );\cb1 \
+\cb3         thread.current =  setTimeout(Level2, \cf6 \strokec6 6000\cf0 \strokec4 );\cb1 \
+\cb3         setTimeout(Level3, \cf6 \strokec6 10000\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleCancelClick()\{\cb1 \
+\cb3         alert(\cf5 \strokec5 'Canceled'\cf0 \strokec4 );\cb1 \
+\cb3         clearTimeout(thread.current);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid p-4"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 VolumeUpClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-warning bi bi-volume-up"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleCancelClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-danger mx-2"\cf7 \strokec7 >\cf0 \strokec4 Cancel Level2\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \strokec7 <p\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "fs-4"\cf7 \strokec7 >\cf2 \strokec2 \{\cf0 \strokec4 msg\cf2 \strokec2 \}\cf7 \strokec7 </p>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	
+\f1\b Throttle 
+\f0\b0 \
+	
+\f1\b  
+\f0\b0 - Throttle is a mechanism of executing set of actions repeatedly until stopped. \
+	 - It loads a task into memory and releases a copy of task into process at \
+		regular time intervals. \
+	 - It repeats until removed from memory. \
+\
+	Syntax:\
+			setInterval( function()\{ \} , interval);\
+			\
+			clearInterval(referenceName);\
+\
+  Ex:\
+	throttle-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  ThrottleDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [now, setNow] = useState(\cf2 \strokec2 new\cf0 \strokec4  Date());\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadTime()\{\cb1 \
+\cb3         setNow(\cf2 \strokec2 new\cf0 \strokec4  Date());\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3         setInterval(LoadTime, \cf6 \strokec6 1000\cf0 \strokec4 );\cb1 \
+\cb3     \},[])\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid text-center"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "h1"\cf7 \strokec7 >\cf2 \strokec2 \{\cf0 \strokec4 now.toLocaleTimeString()\cf2 \strokec2 \}\cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+ Task: Create a Stop Watch using Throttle \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
