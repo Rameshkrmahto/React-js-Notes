@@ -1,0 +1,374 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red19\green118\blue70;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0  
+\f1\b Throttle Demo\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useRef, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  ThrottleDemo()\{\cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb3     \cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [milliSeconds, setMilliSeconds] = useState(\cf6 \strokec6 0\cf0 \strokec4 );\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [seconds, setSeconds] = useState(\cf6 \strokec6 0\cf0 \strokec4 );\cb1 \
+\cb3     \cb1 \
+\cb3     \cf2 \strokec2 let\cf0 \strokec4  thread = useRef(\cf2 \strokec2 null\cf0 \strokec4 );\cb1 \
+\cb3    \cb1 \
+\cb3     \cf2 \strokec2 let\cf0 \strokec4  ms=\cf6 \strokec6 0\cf0 \strokec4 , sec=\cf6 \strokec6 0\cf0 \strokec4 , min=\cf6 \strokec6 0\cf0 \strokec4 , hrs=\cf6 \strokec6 0\cf0 \strokec4 ;\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  StartWatch()\{\cb1 \
+\cb3         ms++;\cb1 \
+\cb3         \cf2 \strokec2 if\cf0 \strokec4 (ms===\cf6 \strokec6 999\cf0 \strokec4 )\{\cb1 \
+\cb3             ms=\cf6 \strokec6 0\cf0 \strokec4 ;\cb1 \
+\cb3             sec++;\cb1 \
+\cb3             \cf2 \strokec2 if\cf0 \strokec4 (sec===\cf6 \strokec6 59\cf0 \strokec4 )\{\cb1 \
+\cb3                 min++;\cb1 \
+\cb3                 sec=\cf6 \strokec6 0\cf0 \strokec4 ;\cb1 \
+\cb3             \}\cb1 \
+\cb3         \}\cb1 \
+\cb3         setMilliSeconds(ms);\cb1 \
+\cb3         setSeconds(sec);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleStartClick()\{\cb1 \
+\cb3         thread.current = setInterval(StartWatch,\cf6 \strokec6 1\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleStopClick()\{\cb1 \
+\cb3         clearInterval(thread.current);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid text-center p-4"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "bg-primary p-4 text-white fw-bold fs-1 w-75 row"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     00\cb1 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     :\cb1 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     00\cb1 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                    :\cb1 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                    \cf2 \strokec2 \{\cf0 \strokec4 seconds\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                    :\cb1 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \strokec4 milliSeconds\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                  \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "mt-3 fs-5"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleStartClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-light"\cf7 \strokec7 >\cf0 \strokec4 Start\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleStopClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-warning mx-2"\cf7 \strokec7 >\cf0 \strokec4 Stop\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3            \cb1 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0  
+\f1\b Ex: Carousel-Demo.jsx \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  axios \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "axios"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ useEffect, useRef, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  CarouselDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [product, setProduct] = useState(\{id:\cf6 \strokec6 0\cf0 \strokec4 , title:\cf2 \strokec2 null\cf0 \strokec4 , image:\cf2 \strokec2 null\cf0 \strokec4 , category:\cf2 \strokec2 null\cf0 \strokec4 , description:\cf2 \strokec2 null\cf0 \strokec4 , price:\cf6 \strokec6 0\cf0 \strokec4 , rating:\{rate:\cf6 \strokec6 0\cf0 \strokec4 , count:\cf6 \strokec6 0\cf0 \strokec4 \}\});\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [status, setStatus] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 let\cf0 \strokec4  ProductId = useRef(\cf6 \strokec6 1\cf0 \strokec4 );\cb1 \
+\cb3     \cf2 \strokec2 let\cf0 \strokec4  thread = useRef(\cf2 \strokec2 null\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadProductManually(id)\cb1 \
+\cb3     \{\cb1 \
+\cb3         axios.get(\cf5 \strokec5 `https://fakestoreapi.com/products/\cf2 \strokec2 $\{\cf0 \strokec4 id\cf2 \strokec2 \}\cf5 \strokec5 `\cf0 \strokec4 )\cb1 \
+\cb3         .then(response\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             setProduct(response.data);\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadProductAuto()\{\cb1 \
+\cb3         ProductId.current = ProductId.current + \cf6 \strokec6 1\cf0 \strokec4 ;\cb1 \
+\cb3         LoadProductManually(ProductId.current);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handlePlayClick()\{\cb1 \
+\cb3        thread.current =  setInterval(LoadProductAuto, \cf6 \strokec6 5000\cf0 \strokec4 );\cb1 \
+\cb3        setStatus(\cf5 \strokec5 'Slide Show - Started'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handlePauseClick()\{\cb1 \
+\cb3         clearInterval(thread.current);\cb1 \
+\cb3         setStatus(\cf5 \strokec5 'Slide Show - Paused'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleNextClick()\{\cb1 \
+\cb3         ProductId.current = ProductId.current + \cf6 \strokec6 1\cf0 \strokec4 ;\cb1 \
+\cb3         LoadProductManually(ProductId.current);\cb1 \
+\cb3         setStatus(\cf5 \strokec5 'Slide Show - Manual'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handlePrevClick()\{\cb1 \
+\cb3         ProductId.current = ProductId.current - \cf6 \strokec6 1\cf0 \strokec4 ;\cb1 \
+\cb3         LoadProductManually(ProductId.current);\cb1 \
+\cb3         setStatus(\cf5 \strokec5 'Slide Show - Manual'\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleSkeebarChange(e)\{\cb1 \
+\cb3         ProductId.current = e.target.value;\cb1 \
+\cb3         LoadProductManually(ProductId.current);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3         LoadProductManually(\cf6 \strokec6 1\cf0 \strokec4 );\cb1 \
+\cb3     \},[])\cb1 \
+\
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid d-flex justify-content-center"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "card mt-3 p-2 w-50"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "card-header text-center overflow-auto"\cf0 \strokec4  \cf8 \strokec8 style\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{height:\cf5 \strokec5 '80px'\cf0 \strokec4 \}\cf2 \strokec2 \}\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \strokec4 product.title\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "fw-bold"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \{\cf0 \strokec4 status\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "card-body"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "row"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col-1 d-flex flex-column justify-content-center align-items-center"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handlePrevClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "bi btn btn-dark bi-chevron-left"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col-10 position-relative"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "badge bg-danger text-white rounded rounded-circle p-3 fs-5 position-absolute top-0 end-0"\cf7 \strokec7 >\cf2 \strokec2 \{\cf0 \strokec4 product.price.toLocaleString(\cf5 \strokec5 'en-us'\cf0 \strokec4 , \{style:\cf5 \strokec5 'currency'\cf0 \strokec4 , currency:\cf5 \strokec5 'USD'\cf0 \strokec4 \})\cf2 \strokec2 \}\cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <img\cf0 \strokec4  \cf8 \strokec8 width\cf0 \strokec4 =\cf5 \strokec5 "100%"\cf0 \strokec4  \cf8 \strokec8 src\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 product.image\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 height\cf0 \strokec4 =\cf5 \strokec5 "300"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <input\cf0 \strokec4  \cf8 \strokec8 value\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 ProductId.current\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleSkeebarChange\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "form-range"\cf0 \strokec4  \cf8 \strokec8 type\cf0 \strokec4 =\cf5 \strokec5 "range"\cf0 \strokec4  \cf8 \strokec8 min\cf0 \strokec4 =\cf5 \strokec5 "1"\cf0 \strokec4  \cf8 \strokec8 max\cf0 \strokec4 =\cf5 \strokec5 "20"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "col-1 d-flex flex-column justify-content-center align-items-center"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleNextClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "bi btn btn-dark bi-chevron-right"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "card-footer text-center"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handlePlayClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-warning bi bi-play"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handlePauseClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-danger bi bi-pause mx-2"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+ Summary\
+	- setTimeout()\
+	- clearTimeout()\
+	- setInterval()\
+	- clearInterval()\
+\
+  Form Events\
+		
+\f0\b0 onSubmit\
+		onReset\
+\
+		- Form events are configured for <form> element.\
+		- They can trigger only with generic buttons like submit & reset. \
+		- You can define actions to perform on submit & on reset. \
+\
+		Syntax:\
+			<form onSubmit=\{handleSubmit\}   onReset=\{handleReset\}>\
+					<button type=\'93submit\'94> Submit </button>\
+					<button type=\'93reset\'94> Cancel </button>\
+			</form>
+\f1\b \
+\
+ Events Summary:\
+	
+\f0\b0 - Mouse Events\
+	- Keyboard Events\
+	- Button Events\
+	- Clipboard Events\
+	- Element State Events\
+	- Timer Events\
+	- Form Events\
+\
+										
+\f1\b Conditional Rendering in React\
+    
+\f0\b0 - It is the process of rendering various content according to state and situation. \
+	- React component can handle conditional rendering using following techniques:\
+\
+	1. Rendering a component into the UI according to state and situation\
+\
+		- You have to configure a reference to handle component. \
+		\
+			const [component, setComponent] = useState(null);\
+\
+		- You can render any component according to the state and situation\
+\
+			     function handleAClick()\
+				\{\
+						setComponent( <A/> );\
+				\}		\
+				function handleBClick()\
+				\{\
+					  setComponent( <B /> );\
+				\}\
+
+\f1\b \
+  Ex: conditional-render.jsx\
+\
+  
+\f2\b0\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ Login \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../login/login"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ Register \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../register/register"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  ConditionalRender()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [component, setComponent] = useState(\cf2 \strokec2 null\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleLoginClick()\{\cb1 \
+\cb3         setComponent(\cf7 \strokec7 <Login\cf0 \strokec4  \cf7 \strokec7 />\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleRegisterClick()\{\cb1 \
+\cb3         setComponent(\cf7 \strokec7 <Register\cf0 \strokec4  \cf7 \strokec7 />\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid p-5"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <h2>\cf0 \strokec4 Home\cf7 \strokec7 </h2>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleLoginClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-primary mx-2"\cf7 \strokec7 >\cf0 \strokec4 Login\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleRegisterClick\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-success"\cf7 \strokec7 >\cf0 \strokec4 Register\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <hr\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3             \cf2 \strokec2 \{\cf0 \strokec4 component\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+   
+\f0\b0 2. Rendering a part of UI inside component according to state and situation\
+\
+		- You can render various blocks inside component.\
+		- It requires a simple decision making function inside UI. \
+\
+	  Syntax:\
+				\{\
+				   (isActive===true) ? <A /> : <B /> \
+				\}\
+			\
+		- If \'93isActive\'94 true then it renders <A> block else <B> block. \
+\
+  
+\f1\b Ex: conditional-render.jsx\
+\
+  
+\f2\b0\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ Login \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../login/login"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ Register \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../register/register"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  ConditionalRender()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [isSignedIn, setIsSignedIn] = useState(\cf2 \strokec2 false\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleSignIn()\{\cb1 \
+\cb3         setIsSignedIn(\cf2 \strokec2 true\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleSignout()\{\cb1 \
+\cb3         setIsSignedIn(\cf2 \strokec2 false\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid p-2"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <header\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "d-flex border border-2 border-secondary justify-content-between align-items-center p-4"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "bi bi-amazon"\cf7 \strokec7 >\cf0 \strokec4  Amazon \cf7 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         (isSignedIn===\cf2 \strokec2 true\cf0 \strokec4 ) \cb1 \
+\cb3                         ?\cb1 \
+\cb3                         \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "badge fs-5 bg-danger text-white rounded rounded-circle"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "bi  bi-person"\cf7 \strokec7 ></span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleSignout\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-link"\cf7 \strokec7 >\cf0 \strokec4 Signout\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         :\cb1 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "input-group"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <input\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "form-control"\cf0 \strokec4  \cf8 \strokec8 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf8 \strokec8 placeholder\cf0 \strokec4 =\cf5 \strokec5 "User Name"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \strokec8 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleSignIn\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 className\cf0 \strokec4 =\cf5 \strokec5 "btn btn-danger"\cf7 \strokec7 >\cf0 \strokec4  Signin\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cb1 \
+\cb3                     \cb1 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 </header>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+\
+
+\f1\b \
+		\
+\
+
+\f2\b0\fs46 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
