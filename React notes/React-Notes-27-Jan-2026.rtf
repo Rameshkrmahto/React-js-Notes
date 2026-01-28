@@ -1,0 +1,300 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fswiss\fcharset0 Helvetica-Oblique;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red19\green118\blue70;\red108\green18\blue48;\red107\green0\blue1;\red220\green0\blue5;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c50588\c12157\c24706;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0  
+\f1\b Summary\
+	- Formik \
+	- useFormik()\
+	- Validation\
+\
+											Yup library for Validation\
+	
+\f0\b0 - Yup is a validation services library.\
+	- It comprises of pre-defined validation functions.\
+	- You can customize and implement according to the requirements. \
+\
+	1. Install Yup library for project\
+	\
+				> npm  install   yup   --save\
+\
+	2. You can import only the required validation service or all services from \
+		 library.\
+\
+				import    \{ required, min, max, \'85 \}  from  \'93yup\'94;\
+\
+										(or)\
+\
+				import    *  as   yup  from \'93yup\'94;\
+\
+	3. Validation is defined as a schema by using   \'93yup.object()\'94\
+\
+				 yup.object( \{ \
+	\
+						FieldName: yup.dataType().required(\'91message\'92).min().max()..\
+		\
+				 \} )\
+\
+	4. You have to configure the schema by using formik \'93ValidationSchema\'94.\
+\
+				const  formik = useFormik(\{ \
+							initialValues: \{ \},\
+							validationSchema: yup.object( \{ \} ),\
+							onSubmit: (values) => \{ \}\
+				\})\
+\
+	5. All error messages are defined using 
+\f1\b \'93formik.errors\'94 
+\f0\b0 object.\
+\
+				 \{ formik.errors.fieldName \}\
+\
+ Ex:\
+	form-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useFormik \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "formik"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \cf2 \strokec2 *\cf0 \strokec4  \cf2 \strokec2 as\cf0 \strokec4  yup \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "yup"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  FormDemo()\{\cb1 \
+\
+\cb3    \cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  formik = useFormik(\{\cb1 \
+\cb3          initialValues: \{\cb1 \
+\cb3             UserName: \cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3             Age: \cf6 \strokec6 0\cf0 \strokec4 ,\cb1 \
+\cb3             Mobile: \cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3             City: \cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3             Gender: \cf5 \strokec5 ''\cf0 \cb1 \strokec4 \
+\cb3          \},\cb1 \
+\cb3          validationSchema: yup.object(\{\cb1 \
+\cb3              UserName: yup.string().required(\cf5 \strokec5 'User Name Required'\cf0 \strokec4 ).min(\cf6 \strokec6 4\cf0 \strokec4 , \cf5 \strokec5 'Name too short'\cf0 \strokec4 ),\cb1 \
+\cb3              Age: yup.number().required(\cf5 \strokec5 'Age Required'\cf0 \strokec4 ).min(\cf6 \strokec6 15\cf0 \strokec4 , \cf5 \strokec5 'Age min 15'\cf0 \strokec4 ).max(\cf6 \strokec6 30\cf0 \strokec4 , \cf5 \strokec5 'Age Max 30'\cf0 \strokec4 ),\cb1 \
+\cb3              Mobile: yup.string().required(\cf5 \strokec5 'Mobile Required'\cf0 \strokec4 ).matches(\cf7 \strokec7 /\\+91\\d\cf0 \strokec4 \{10\}\cf7 \strokec7 /\cf0 \strokec4 , \cf5 \strokec5 'Invalid Mobile +91 10 digits'\cf0 \strokec4 )\cb1 \
+\cb3          \}) ,\cb1 \
+\cb3          onSubmit : (user) \cf2 \strokec2 =>\cf0 \strokec4  \{\cb1 \
+\cb3             console.log(user);\cb1 \
+\cb3          \}\cb1 \
+\cb3     \})\cb1 \
+\cb3     \cb1 \
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf8 \strokec8 <div\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3             \cf8 \strokec8 <h2>\cf0 \strokec4 Register User\cf8 \strokec8 </h2>\cf0 \cb1 \strokec4 \
+\cb3             \cf8 \strokec8 <form\cf0 \strokec4  \cf9 \strokec9 onSubmit\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleSubmit\cf2 \strokec2 \}\cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 <dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 User Name\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd><input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4   \cf8 \strokec8 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.UserName\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 Age\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd><input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Age"\cf0 \strokec4  \cf8 \strokec8 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.Age\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 Mobile\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd><input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf8 \strokec8 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.Mobile\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                      \cf8 \strokec8 <dt>\cf0 \strokec4 Your City\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf8 \strokec8 <select\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "City"\cf0 \strokec4  \cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf8 \strokec8 <option\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 '-1'\cf8 \strokec8 >\cf0 \strokec4 Select City\cf8 \strokec8 </option>\cf0 \cb1 \strokec4 \
+\cb3                             \cf8 \strokec8 <option\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 'Delhi'\cf8 \strokec8 >\cf0 \strokec4 Delhi\cf8 \strokec8 </option>\cf0 \cb1 \strokec4 \
+\cb3                             \cf8 \strokec8 <option\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 'Hyd'\cf8 \strokec8 >\cf0 \strokec4 Hyd\cf8 \strokec8 </option>\cf0 \cb1 \strokec4 \
+\cb3                         \cf8 \strokec8 </select>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.City\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 Choose Gender\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf8 \strokec8 <input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "radio"\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Gender"\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 "Male"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 />\cf0 \strokec4  Male\cb1 \
+\cb3                         \cf8 \strokec8 <input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "radio"\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Gender"\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 "Female"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 />\cf0 \strokec4  Female\cb1 \
+\cb3                     \cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 </dl>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 <button\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "submit"\cf8 \strokec8 >\cf0 \strokec4 Register\cf8 \strokec8 </button>\cf0 \cb1 \strokec4 \
+\cb3             \cf8 \strokec8 </form>\cf0 \cb1 \strokec4 \
+\cb3         \cf8 \strokec8 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	
+\f1\b Validation State
+\f0\b0 \
+	- Every form comprises of 2 levels of validation.\
+		a) Input State\
+		b) Form State\
+	- Input state is the process of verifying every field individually. \
+	- Form State is the process of verifying all fields simultaneously at the same 	  time.\
+	- Formik provides both input and form state validation.\
+	- Formik has pre-defined 
+\f1\b form state
+\f0\b0  services like\
+	\
+				a) touched \
+				b) dirty \
+				c) isValid\
+				d) errors \
+\
+	 - 
+\f1\b touched 
+\f0\b0 returns 
+\f3\i true
+\f0\i0  if any form field get focus. \
+	 - 
+\f1\b dirty 
+\f0\b0 returns 
+\f3\i true
+\f0\i0  if any form field value is modified. [when user inputs]\
+	 - 
+\f1\b isValid 
+\f0\b0 returns 
+\f3\i true
+\f0\i0  if all form fields are valid. \
+	 - 
+\f1\b errors 
+\f0\b0 returns a object the comprises of all fields and their error messages. \
+\
+	Syntax:\
+			 <button  disabled=\{ (formik.isValid) ? false: true \} > Register </button>\
+			 <button  disabled=\{ (formik.dirty) ? true: false \}> Save </button>\
+\
+	 - 
+\f1\b \'93formik.errors\'94 
+\f0\b0 object is used to summarize the form errors. \
+\
+	 Syntax:\
+				Object.values(formik.errors)      => returns all error messages [ ].\
+\
+  \
+	 - Formik provides various events for verifying the form data\
+			a) onChange\
+			b) onBlur\
+			c) onSubmit \
+	 - Formik has pre-defined functions for validation events\
+			a) handleChange\
+			b) handleBlur\
+			c) handleSubmit\
+	 - You can configure all event handlers individually. \
+\
+		  <input type=\'93text\'94 name=\'93UserName\'94  onChange=\{formik.handleChange\}\
+			 onBlur=\{formik.handleBlur\} />\
+	\
+	  - You can configure all events handlers using a spread operator. \
+		\
+		   <input type=\'93text\'94 name=\'93UserName\'94  \
+					\{ \'85formik.getFieldProps(\'93UserName\'94) \}  />\
+\
+ Ex:\
+ 
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useFormik \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "formik"\cf0 \strokec4 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \cf2 \strokec2 *\cf0 \strokec4  \cf2 \strokec2 as\cf0 \strokec4  yup \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "yup"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  FormDemo()\{\cb1 \
+\
+\cb3    \cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  formik = useFormik(\{\cb1 \
+\cb3          initialValues: \{\cb1 \
+\cb3             UserName: \cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3             Age: \cf6 \strokec6 0\cf0 \strokec4 ,\cb1 \
+\cb3             Mobile: \cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3             City: \cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3             Gender: \cf5 \strokec5 ''\cf0 \cb1 \strokec4 \
+\cb3          \},\cb1 \
+\cb3          validationSchema: yup.object(\{\cb1 \
+\cb3              UserName: yup.string().required(\cf5 \strokec5 'User Name Required'\cf0 \strokec4 ).min(\cf6 \strokec6 4\cf0 \strokec4 , \cf5 \strokec5 'Name too short'\cf0 \strokec4 ),\cb1 \
+\cb3              Age: yup.number().required(\cf5 \strokec5 'Age Required'\cf0 \strokec4 ).min(\cf6 \strokec6 15\cf0 \strokec4 , \cf5 \strokec5 'Age min 15'\cf0 \strokec4 ).max(\cf6 \strokec6 30\cf0 \strokec4 , \cf5 \strokec5 'Age Max 30'\cf0 \strokec4 ),\cb1 \
+\cb3              Mobile: yup.string().required(\cf5 \strokec5 'Mobile Required'\cf0 \strokec4 ).matches(\cf7 \strokec7 /\\+91\\d\cf0 \strokec4 \{10\}\cf7 \strokec7 /\cf0 \strokec4 , \cf5 \strokec5 'Invalid Mobile +91 10 digits'\cf0 \strokec4 )\cb1 \
+\cb3          \}) ,\cb1 \
+\cb3          onSubmit : (user) \cf2 \strokec2 =>\cf0 \strokec4  \{\cb1 \
+\cb3             console.log(user);\cb1 \
+\cb3          \}\cb1 \
+\cb3     \})\cb1 \
+\cb3     \cb1 \
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf8 \strokec8 <div\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3             \cf8 \strokec8 <h2>\cf0 \strokec4 Register User\cf8 \strokec8 </h2>\cf0 \cb1 \strokec4 \
+\cb3             \cf8 \strokec8 <form\cf0 \strokec4  \cf9 \strokec9 onSubmit\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleSubmit\cf2 \strokec2 \}\cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 <dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 User Name\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd><input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 ...formik.getFieldProps(\cf5 \strokec5 'UserName'\cf0 \strokec4 )\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4   \cf8 \strokec8 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.UserName\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 Age\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd><input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Age"\cf0 \strokec4  \cf8 \strokec8 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.Age\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 Mobile\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd><input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf8 \strokec8 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.Mobile\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                      \cf8 \strokec8 <dt>\cf0 \strokec4 Your City\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf8 \strokec8 <select\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "City"\cf0 \strokec4  \cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf8 \strokec8 <option\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 '-1'\cf8 \strokec8 >\cf0 \strokec4 Select City\cf8 \strokec8 </option>\cf0 \cb1 \strokec4 \
+\cb3                             \cf8 \strokec8 <option\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 'Delhi'\cf8 \strokec8 >\cf0 \strokec4 Delhi\cf8 \strokec8 </option>\cf0 \cb1 \strokec4 \
+\cb3                             \cf8 \strokec8 <option\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 'Hyd'\cf8 \strokec8 >\cf0 \strokec4 Hyd\cf8 \strokec8 </option>\cf0 \cb1 \strokec4 \
+\cb3                         \cf8 \strokec8 </select>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf8 \strokec8 >\cf2 \strokec2 \{\cf0 \strokec4 formik.errors.City\cf2 \strokec2 \}\cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dt>\cf0 \strokec4 Choose Gender\cf8 \strokec8 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf8 \strokec8 <input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "radio"\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Gender"\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 "Male"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 />\cf0 \strokec4  Male\cb1 \
+\cb3                         \cf8 \strokec8 <input\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "radio"\cf0 \strokec4  \cf9 \strokec9 name\cf0 \strokec4 =\cf5 \strokec5 "Gender"\cf0 \strokec4  \cf9 \strokec9 value\cf0 \strokec4 =\cf5 \strokec5 "Female"\cf0 \strokec4  \cf9 \strokec9 onChange\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 formik.handleChange\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 />\cf0 \strokec4  Female\cb1 \
+\cb3                     \cf8 \strokec8 </dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 </dl>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 <button\cf0 \strokec4  \cf9 \strokec9 type\cf0 \strokec4 =\cf5 \strokec5 "submit"\cf0 \strokec4  \cf9 \strokec9 disabled\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 (formik.isValid)?\cf2 \strokec2 false\cf0 \strokec4 :\cf2 \strokec2 true\}\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf5 \strokec5 "mx-2"\cf8 \strokec8 >\cf0 \strokec4 Register\cf8 \strokec8 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 <button\cf0 \strokec4   \cf9 \strokec9 className\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 (formik.dirty)?\cf5 \strokec5 'd-inline'\cf0 \strokec4 :\cf5 \strokec5 'd-none'\cf2 \strokec2 \}\cf8 \strokec8 >\cf0 \strokec4 Save\cf8 \strokec8 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 <div\cf0 \strokec4  \cf9 \strokec9 style\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{color:\cf5 \strokec5 'red'\cf0 \strokec4 \}\cf2 \strokec2 \}\cf0 \strokec4  \cf9 \strokec9 className\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 (formik.isValid)?\cf5 \strokec5 'd-none'\cf0 \strokec4 :\cf5 \strokec5 'd-block'\cf2 \strokec2 \}\cf8 \strokec8 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <h3>\cf0 \strokec4 Please check the following errors in form\cf8 \strokec8 </h3>\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 <ul>\cf0 \cb1 \strokec4 \
+\cb3                       \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                          Object.values(formik.errors).map(error\cf2 \strokec2 =>\cf0 \strokec4  \cf8 \strokec8 <li\cf0 \strokec4  \cf9 \strokec9 key\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 error\cf2 \strokec2 \}\cf8 \strokec8 >\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 error\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \strokec8 </li>\cf0 \strokec4 )\cb1 \
+\cb3                       \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf8 \strokec8 </ul>\cf0 \cb1 \strokec4 \
+\cb3                 \cf8 \strokec8 </div>\cf0 \cb1 \strokec4 \
+\cb3             \cf8 \strokec8 </form>\cf0 \cb1 \strokec4 \
+\cb3         \cf8 \strokec8 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	
+\f1\b Note: Hooks are not allowed in class components. You can\'92t use\
+			   \'93useFormik()\'94 hook for designing and validating a form.\
+\
+	
+\f0\b0 - Formik provides pre-defined components, which allow to design and validate\
+	  form without hooks. \
+\
+						<Formik>\
+						<Form>\
+						<Field>\
+						<ErrorMessage>\
+\
+	
+\f1\b Reack-Hook-Form\
+		https://react-hook-form.com/\
+
+\f0\b0 \
+	\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
