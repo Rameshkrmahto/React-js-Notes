@@ -1,0 +1,199 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;\red19\green118\blue70;\red108\green18\blue48;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;\cssrgb\c3529\c52549\c34510;\cssrgb\c50588\c12157\c24706;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0  
+\f1\b Summary\
+		- Formik \
+		- Yup\
+		- Validation \
+		- Validation Schema \
+		- Form State & Input State\
+				
+\f0\b0 isValid\
+				dirty\
+				touched\
+				errors\
+		\
+		
+\f1\b Formik Components:\
+					
+\f0\b0 <Formik>\
+					<Form>\
+					<Field>\
+					<ErrorMessage>\
+\
+		Syntax:\
+				<Formik   initialValues=\{ \}   validate=\{ \}    validationSchema=\{ \}   onSubmit=\{ \}>\
+\
+						<Form>\
+								<Field type=\'93text | email | number | date..\'94 name=\'93FieldName\'94 />\
+								<ErrorMessage name=\'93FieldName\'94 />\
+						</Form>\
+		\
+				</Form>\
+\
+								<Form>		 Formik Form Component\
+								<form>		 HTML Form\
+\
+			- You can capture the form state and handle form state validations. \
+\
+	\
+			Syntax:\
+					 <Formik>\
+						 \{\
+							formik => <Form> </Form>\
+							formik.isValid, dirty, touched etc.\
+						 \}\
+					</Formik>\
+\
+  Ex:\
+	formik-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ Formik, Form, Field, ErrorMessage \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "formik"\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \cf2 \strokec2 *\cf0 \strokec4  \cf2 \strokec2 as\cf0 \strokec4  yup \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "yup"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  FormikDemo()\{\cb1 \
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <h2>\cf0 \strokec4 Register User\cf6 \strokec6 </h2>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <Formik\cf0 \strokec4  \cf7 \strokec7 initialValues\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{UserName:\cf5 \strokec5 ''\cf0 \strokec4 , Mobile:\cf5 \strokec5 ''\cf0 \strokec4 \}\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 validationSchema\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 yup.object(\{UserName:yup.string().required(\cf5 \strokec5 'User Name Required'\cf0 \strokec4 ).min(\cf8 \strokec8 4\cf0 \strokec4 ,\cf5 \strokec5 'Name too Short'\cf0 \strokec4 ), Mobile: yup.string().required(\cf5 \strokec5 'Mobile Required'\cf0 \strokec4 ).matches(\cf9 \strokec9 /\\+91\\d\cf0 \strokec4 \{10\}\cf9 \strokec9 /\cf0 \strokec4 )\})\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 onSubmit\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 (user)\cf2 \strokec2 =>\cf0 \strokec4 console.log(user)\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                     formik \cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <Form>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dl>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <dt>\cf0 \strokec4 User Name\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <dd><Field\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <dd\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf6 \strokec6 ><ErrorMessage\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <dt>\cf0 \strokec4 Mobile\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <dd><Field\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <dd\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf6 \strokec6 ><ErrorMessage\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 disabled\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 (formik.isValid)?\cf2 \strokec2 false\cf0 \strokec4 :\cf2 \strokec2 true\}\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "submit"\cf6 \strokec6 >\cf0 \strokec4 Register\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3                    \cf6 \strokec6 </Form>\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </Formik>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 												
+\f1\b React Hook Form
+\f0\b0 \
+		
+\f1\b Features:\
+		1. Performant \
+				
+\f0\b0 - It is light weight as it uses less memory.\
+				- It is modular as it includes only the services required for situation. \
+				- It is faster in rendering output. \
+		\
+		
+\f1\b 2. Flexible & Extensible \
+				
+\f0\b0 - It can adjust according to the requirements.\
+				- It allows extend a form by adding new features without disturbing existing form.\
+				- You can easily add and remove elements from a form. \
+				- A form can change dynamically. \
+\
+		
+\f1\b 3. Easy to use Validations\
+				
+\f0\b0 - It uses HTML validation attributes.\
+				- It doesn\'92t require a 3rd party validation service. \
+				- Built-in HTML validations are faster in interactions. \
+		\
+		\
+		
+\f1\b Exploring a new Library:\
+		
+\f0\b0 1. Visit the official website of \'93GIT\'94 repository of library. \
+		\
+				https://react-hook-form.com/\
+\
+		2. If it is a website then go to 
+\f1\b API 
+\f0\b0 and explore all features provided by library.\
+		    If it is a GIT repository go to \'93README.md\'94 to explore and know about library.\
+\
+		3. Hook form provides various services like\
+	\
+						useForm\
+						useController\
+						useFormContext\
+						useWatch\
+						useFormState etc.\
+	\
+		4. Every service is not required for an application. You have to find exactly relative \
+			service for your project. \
+\
+				useForm		: for simple form with validations.\
+				useController	: for a form in controlled component, where data comes from parent.\
+				useFormContext : for avoiding props drilling, and using context memory.\
+\
+		5. Go to \'93Get started\'94 to setup and install library for project\
+\
+					> npm   install   react-hook-form   --save\
+\
+		6. Configure a form using \'93useForm\'94 hook\
+\
+					import   \{ useForm \}    from   \'93react-hook-form\'94;\
+\
+					const  \{ register, handleSubmit, formState: \{ errors \} \} = useForm();\
+\
+					
+\f1\b register				: 
+\f0\b0 It refers to form and its elements.\
+					
+\f1\b handleSubmit 
+\f0\b0 		
+\f1\b : 
+\f0\b0 It defines actions on submit.\
+					
+\f1\b formState				
+\f0\b0 : It returns the errors. \
+\
+		7. Create a method for handling submit action.\
+\
+					const   submit = (values) => \{\
+						console.log(values);\
+					\}			\
+		\
+					<form  onSubmit=\{ handleSubmit(submit) \} >\
+\
+					</form>\
+\
+					<input type=\'93text\'94  \{ \'85register(\'93fieldName\'94, \{ validations \}) \} />\
+					\
+					\{ (errors.fieldName?.type===\'93error-type\'94) ? True : False \}\
+\
+\
+							\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

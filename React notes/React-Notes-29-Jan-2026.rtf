@@ -1,0 +1,251 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;\red19\green118\blue70;\red108\green18\blue48;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;\cssrgb\c3529\c52549\c34510;\cssrgb\c50588\c12157\c24706;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 	\
+	
+\f1\b FAQ: What is Optional Chaining in JavaScript?\
+	
+\f0\b0 Ans:   - Javascript is not a strongly typed language. \
+			 - It uses dynamic types.\
+			 - It verifies the keys at runtime, and if any key not found then it returns errors.\
+			 -You can avoid runtime errors and set keys as \'93undefined\'94 by using \'93?\'94 Null reference			character.\
+\
+			Syntax:\
+					var  product = \{ name: \'93TV\'94,  rating: \{ rate : 3.5 \} \};\
+\
+					console.log( product.rating.rate);         // 3.5\
+					console.log( product.rating.reviews);   // undefined \
+					console.log( product.vendor.rating);    // rating not defined [vendor] error.\
+					console.log( product.vendor?.rating);  // undefined \
+\
+ Ex:  hook-form-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useForm \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react-hook-form"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  HookFormDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  \{register, handleSubmit, formState:\{errors\}\} = useForm();\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  submit = (user)\cf2 \strokec2 =>\cf0 \strokec4  \{\cb1 \
+\cb3         console.log(user);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <form\cf0 \strokec4  \cf7 \strokec7 onSubmit\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleSubmit(submit)\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <h3>\cf0 \strokec4 Register User\cf6 \strokec6 </h3>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dt>\cf0 \strokec4 User Name\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd><input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 ...register(\cf5 \strokec5 "UserName"\cf0 \strokec4 , \{required:\cf2 \strokec2 true\cf0 \strokec4 , minLength:\cf8 \strokec8 4\cf0 \strokec4 \})\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                             (errors.UserName?.type===\cf5 \strokec5 "required"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 User Name Required\cf6 \strokec6 </span>\cf0 \strokec4  : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                             &&\cb1 \
+\cb3                             (errors.UserName?.type===\cf5 \strokec5 "minLength"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 Name too short\cf6 \strokec6 </span>\cf0 \strokec4  : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dt>\cf0 \strokec4 Mobile\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 ...register(\cf5 \strokec5 "Mobile"\cf0 \strokec4 , \{required:\cf2 \strokec2 true\cf0 \strokec4 , pattern:\cf9 \strokec9 /\\+91\\d\cf0 \strokec4 \{10\}\cf9 \strokec9 /\cf0 \strokec4 \})\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                       \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         (errors.Mobile?.type===\cf5 \strokec5 "required"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 Mobile Required\cf6 \strokec6 </span>\cf0 \strokec4 : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                         && \cb1 \
+\cb3                         (errors.Mobile?.type===\cf5 \strokec5 "pattern"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 Invalid Mobile +91 10 digits\cf6 \strokec6 </span>\cf0 \strokec4  : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                       \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </dl>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "submit"\cf6 \strokec6 >\cf0 \strokec4 Submit\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </form>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 			\
+\
+Task :  Dynamically add or remove elements from form\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useForm \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react-hook-form"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  HookFormDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  \{register, handleSubmit, formState:\{errors\}\} = useForm();\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  submit = (user)\cf2 \strokec2 =>\cf0 \strokec4  \{\cb1 \
+\cb3         console.log(user);\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <form\cf0 \strokec4  \cf7 \strokec7 onSubmit\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleSubmit(submit)\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <h3>\cf0 \strokec4 Register User\cf6 \strokec6 </h3>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dt>\cf0 \strokec4 User Name\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd><input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 ...register(\cf5 \strokec5 "UserName"\cf0 \strokec4 , \{required:\cf2 \strokec2 true\cf0 \strokec4 , minLength:\cf8 \strokec8 4\cf0 \strokec4 \})\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                             (errors.UserName?.type===\cf5 \strokec5 "required"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 User Name Required\cf6 \strokec6 </span>\cf0 \strokec4  : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                             &&\cb1 \
+\cb3                             (errors.UserName?.type===\cf5 \strokec5 "minLength"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 Name too short\cf6 \strokec6 </span>\cf0 \strokec4  : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dt>\cf0 \strokec4 Mobile\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 ...register(\cf5 \strokec5 "Mobile"\cf0 \strokec4 , \{required:\cf2 \strokec2 true\cf0 \strokec4 , pattern:\cf9 \strokec9 /\\+91\\d\cf0 \strokec4 \{10\}\cf9 \strokec9 /\cf0 \strokec4 \})\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-danger"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                       \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         (errors.Mobile?.type===\cf5 \strokec5 "required"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 Mobile Required\cf6 \strokec6 </span>\cf0 \strokec4 : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                         && \cb1 \
+\cb3                         (errors.Mobile?.type===\cf5 \strokec5 "pattern"\cf0 \strokec4 )? \cf6 \strokec6 <span>\cf0 \strokec4 Invalid Mobile +91 10 digits\cf6 \strokec6 </span>\cf0 \strokec4  : \cf6 \strokec6 <span></span>\cf0 \cb1 \strokec4 \
+\cb3                       \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dt>\cf0 \strokec4 Upload Photo\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "file"\cf0 \strokec4  \cf6 \strokec6 />\cf0 \strokec4  \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "btn d-inline btn-link"\cf6 \strokec6 >\cf0 \strokec4  upload more\cf6 \strokec6 </button>\cf0 \strokec4  \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "btn bi bi-trash d-inline"\cf6 \strokec6 ></button>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </dl>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "submit"\cf6 \strokec6 >\cf0 \strokec4 Submit\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </form>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	
+\f1\b What\'92s New in React 19x Forms:\
+\
+	1. FormData\
+			
+\f0\b0 - FormData is a browser collection object.\
+			- It can collect the data from any form submitted on POST. \
+			- It is a Key and Value collection.\
+			- Key refers to field name. [element name]\
+			- Value refers to field value. [element value]\
+			- It uses a dynamic memory to store form data. \
+			- Dynamic memory is discrete memory. \
+			- It is not good for continuous operations. \
+\
+	   Syntax:\
+				let  formdata = new FormData(formReference);\
+\
+				function handleSubmit(e)\
+				\{\
+				    let formdata = new FormData(e.target);       // sends form reference.\
+					formdata.get(key)\
+					formdata.set(key)\
+					formdata.delete(key)\
+								 .keys()\
+								 .values()\
+								 .entries()\
+					etc..\
+				\}\
+		\
+	 Ex: new-form-demo.jsx\
+\
+	
+\f2\fs46 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  NewFormDemo()\{\cb1 \
+\
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleSubmit(e)\{\cb1 \
+\cb3         e.preventDefault();\cb1 \
+\cb3         \cf2 \strokec2 let\cf0 \strokec4  formdata = \cf2 \strokec2 new\cf0 \strokec4  FormData(e.target);\cb1 \
+\cb3         console.log(\cf5 \strokec5 `User Name : \cf2 \strokec2 $\{\cf0 \strokec4 formdata.get(\cf5 \strokec5 'UserName'\cf0 \strokec4 )\cf2 \strokec2 \}\cf5 \strokec5 \\nMobile : \cf2 \strokec2 $\{\cf0 \strokec4 formdata.get(\cf5 \strokec5 'Mobile'\cf0 \strokec4 )\cf2 \strokec2 \}\cf5 \strokec5 `\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid p-3"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <form\cf0 \strokec4  \cf7 \strokec7 onSubmit\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleSubmit\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <dl>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dt>\cf0 \strokec4 Name\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd><input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "UserName"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                      \cf6 \strokec6 <dt>\cf0 \strokec4 Mobile\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <dd><input\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf7 \strokec7 name\cf0 \strokec4 =\cf5 \strokec5 "Mobile"\cf0 \strokec4  \cf6 \strokec6 /></dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </dl>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 type\cf0 \strokec4 =\cf5 \strokec5 "submit"\cf6 \strokec6 >\cf0 \strokec4 Submit\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </form>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+	
+\f1\b 2. useRef\
+			
+\f0\b0 - It is a react hook.\
+			- It is used to configure a reference memory.\
+			- Reference memory is intended to used with in the context of process. \
+			- It is good for values used inside process but not for rendering in UI.\
+			- It configure a thread in current process and stores the value of element. \
+			- Every HTML form element can be configured with \'93
+\f1\b ref\'94 
+\f0\b0 property, which maps to\
+			  reference memory.\
+\
+			Syntax:	\
+					const  nameRef = useRef(null);\
+\
+					<input type=\'93text\'94 name=\'93UserName\'94  ref=\{ nameRef \}  />\
+\
+			- You can access with reference of current thread.\
+		\
+			Syntax:\
+					 nameRef.current	           // refers to entire form element  <input>\
+					 nameRef.current.value   //  refers to input value\
+\
+	
+\f1\b 3. useFormState()\
+	4. useFormAction()\
+			
+\f0\b0 - These are new React 19 hooks for handling server side actions.\
+			- A client component can collect data from form and submit to any server component\
+			  using the new hooks. \
+\
+	\
+												
+\f1\b React Routing 
+\f0\b0 \
+		\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

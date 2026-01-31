@@ -1,0 +1,155 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 												
+\f1\b React Routing\
+	\
+	
+\f0\b0 - Web technologies use various techniques to handle different functionalities.\
+	- Some of the popular techniques include\
+			a) Data Binding\
+			b) Event Binding\
+			c) State Management \
+			d) Caching\
+			e) Model Binding\
+			f) Routing etc.\
+	- Routing is a technique used in web applications to configure user and SEO friendly URL\'92s.\
+	- User friendly URL\'92s allow user to query any content directly from address bar. \
+	\
+		Ex: without route\
+		\
+		http://www.amazon.in/products.jsp?category=electronics&product=mobile&brand=apple\
+	\
+		Ex: with route\
+\
+		http://www.amazon.in/electornics/mobiles/apple\
+\
+	- SEO friendly URL allows web crawlers to find the exact location of user in page. \
+	- Routing implicitly uses AJAX, which allows to load new content into page without reloading 	  the page.\
+	- In SPA [Single Page Application] user can stay on one page and can access everything \
+	  on to the page. \
+	- Routing can be configured\
+		a) Server Side\
+		b) Client Side\
+	- Server Side routing is used in server frameworks, it can be in server side app or API.\
+	- Client side libraries and frameworks can use routing for navigation. \
+	- 
+\f1\b React 
+\f0\b0 library doesn\'92t provide any routing support implicitly. \
+	- You have to enable routing by using the routing library 
+\f1\b \'93react-router-dom\'94.\
+	
+\f0\b0 - The latest router-dom version is \'937\'94. 
+\f1\b \
+	
+\f0\b0 \
+	
+\f1\b 1. Install React Router DOM for project\
+\
+			
+\f0\b0 > npm   install    react-router-dom  --save\
+\
+	
+\f1\b 2. React router provides following components\
+\
+			
+\f0\b0 <BrowserRouter>\
+			<Routes>\
+			<Route>\
+			<Link>\
+			<Outlet>\
+\
+	  - 
+\f1\b BrowserRouter	 :
+\f0\b0  It is responsible for converting the virtual DOM routes into actual DOM.\
+	  
+\f1\b 							   
+\f0\b0 In actual DOM the navigation is managed by 
+\f1\b location 
+\f0\b0 object. [BOM]\
+\
+	  - 
+\f1\b Routes				 
+\f0\b0 : It is used to configure the route table. It is a collection of routes. \
+\
+	  - 
+\f1\b Route				 
+\f0\b0 : It is used to configure every individual route in a routes collection.\
+\
+	  - 
+\f1\b Link					 
+\f0\b0 : It creates anchor used for route navigation. \
+\
+	  - 
+\f1\b Outlet				
+\f0\b0  : It is used to configure the target location for child routes. \
+\
+	  Syntax:\
+\
+				<BrowserRouter>\
+					<Routes>\
+						<Route  path=\{ \}       element=\{ \}     children=\{ \}   />\
+					</Routes>\
+				</BrowserRouter>\
+\
+	 Ex:\
+		tutorial-index.jsx\
+\
+	
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ BrowserRouter, Route, Routes, Link \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react-router-dom"\cf0 \strokec4 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ TutorialHome \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "./tutorial-home"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ JavaTutorial \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "./java-tutorial"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ ReactTutorial \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "./react-tutorial"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ WeatherApp \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../components/weather-app/weather-app"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  TutorialIndex()\{\cb1 \
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <BrowserRouter>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <header>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <h2\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "text-center"\cf6 \strokec6 >\cf0 \strokec4 Tutorial Index\cf6 \strokec6 </h2>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <nav>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <span><Link\cf0 \strokec4  \cf7 \strokec7 to\cf0 \strokec4 =\cf5 \strokec5 "/home"\cf6 \strokec6 >\cf0 \strokec4 Home\cf6 \strokec6 </Link></span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "mx-5"\cf6 \strokec6 ><Link\cf0 \strokec4  \cf7 \strokec7 to\cf0 \strokec4 =\cf5 \strokec5 "/java"\cf6 \strokec6 >\cf0 \strokec4 Java Tutorial\cf6 \strokec6 </Link></span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "me-5"\cf6 \strokec6 ><Link\cf0 \strokec4  \cf7 \strokec7 to\cf0 \strokec4 =\cf5 \strokec5 "/react"\cf6 \strokec6 >\cf0 \strokec4 React Tutorial\cf6 \strokec6 </Link></span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <span><Link\cf0 \strokec4  \cf7 \strokec7 to\cf0 \strokec4 =\cf5 \strokec5 "/weather"\cf6 \strokec6 >\cf0 \strokec4 Weather\cf6 \strokec6 </Link></span>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </nav>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </header>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <hr\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <section>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <Routes>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <Route\cf0 \strokec4  \cf7 \strokec7 path\cf0 \strokec4 =\cf5 \strokec5 "home"\cf0 \strokec4  \cf7 \strokec7 element\cf0 \strokec4 =\cf2 \strokec2 \{\cf6 \strokec6 <TutorialHome\cf0 \strokec4  \cf6 \strokec6 />\cf2 \strokec2 \}\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <Route\cf0 \strokec4  \cf7 \strokec7 path\cf0 \strokec4 =\cf5 \strokec5 "java"\cf0 \strokec4  \cf7 \strokec7 element\cf0 \strokec4 =\cf2 \strokec2 \{\cf6 \strokec6 <JavaTutorial\cf0 \strokec4  \cf6 \strokec6 />\cf2 \strokec2 \}\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <Route\cf0 \strokec4  \cf7 \strokec7 path\cf0 \strokec4 =\cf5 \strokec5 "react"\cf0 \strokec4  \cf7 \strokec7 element\cf0 \strokec4 =\cf2 \strokec2 \{\cf6 \strokec6 <ReactTutorial\cf0 \strokec4  \cf6 \strokec6 />\cf2 \strokec2 \}\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <Route\cf0 \strokec4  \cf7 \strokec7 path\cf0 \strokec4 =\cf5 \strokec5 "weather"\cf0 \strokec4  \cf7 \strokec7 element\cf0 \strokec4 =\cf2 \strokec2 \{\cf6 \strokec6 <WeatherApp\cf0 \strokec4  \cf6 \strokec6 />\cf2 \strokec2 \}\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </Routes>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </section>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </BrowserRouter>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+			\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
