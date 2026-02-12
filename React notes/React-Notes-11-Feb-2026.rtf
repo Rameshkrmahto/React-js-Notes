@@ -1,0 +1,249 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red255\green255\blue255;
+\red144\green1\blue18;\red19\green118\blue70;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0  
+\f1\b Summary \
+	- What is Service?\
+	- Values / Functions => Factory => Service => Component \
+	- Consumer, Provider, Injector, Subscriber\
+	- DI \
+\
+												Custom Hooks\
+	
+\f0\b0 - Hook is a function.\
+	- Hook function name must start with \'93
+\f1\b use\'94 
+\f0\b0 and must be in camelCase. \
+	\
+						function  useCaptcha()\
+						\{\
+						\}\
+	\
+	- Hook function can\'92t be void type. It must return a value or function. \
+	\
+						function useCaptcha()\
+						\{\
+							 return value / function()\{ \}\
+						\}\
+	\
+	- It can parameter less or parameterized. \
+	- If it is parameterized then it is mandatory to pass relative arguments. \
+\
+						function useCaptcha(code)\
+						\{\
+							return  value;\
+						\}\
+\
+	- You can\'92t access and use a hook inside any block, you can use only in React \
+	  component block or custom hook block. \
+\
+						if (condition)\
+						\{\
+							const [user, setUser] = useState(\'91name\'92);    // invalid\
+						\}\
+		\
+						function Component()   
+\f1\b => component
+\f0\b0 \
+						\{\
+							const [user, setUser] = useState();    // valid\
+						\}\
+\
+						function handleSubmit()\
+						\{\
+							const [user, setUser] = useState();   // invalid\
+						\}\
+\
+						function useCaptcha()  
+\f1\b  => Hook
+\f0\b0 \
+						\{\
+						   const [user, setUser] = useState();    // valid \
+						\}\
+\
+		- It is mandatory to call a hook with exactly specified arguments. \
+		- It must match with argument data type and order. \
+		- A custom hook can use all React built-in hooks. \
+		\
+		
+\f1\b FAQ: Why to use a hook, if the same can be achieved using function?\
+		
+\f0\b0 Ans:   Normal function is always accessed using 
+\f1\b Single Call. \
+				  
+\f0\b0 Hook function is accessed using 
+\f1\b Single ton.\
+		\
+		FAQ: What are Single Call & Single Ton?\
+		
+\f0\b0 Ans:  Single Call is a design pattern used to create an object for every request. \
+				 Single Ton is a pattern where object is created for first request and the same\
+				 is used across requests. \
+\
+  Ex:\
+	1. Src/hooks/use-captcha.jsx\
+	\
+	
+\f2\fs46 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 export\cf0 \strokec2  \cf3 \strokec3 function\cf0 \strokec2  useCaptcha()\{\cb1 \
+\cb4     \cf3 \strokec3 let\cf0 \strokec2  code = \cf5 \strokec5 ''\cf0 \strokec2 ;\cb1 \
+\cb4     code = \cf5 \strokec5 `\cf3 \strokec3 $\{\cf0 \strokec2 Math.round(Math.random()*\cf6 \strokec6 10\cf0 \strokec2 )\cf3 \strokec3 \}\cf5 \strokec5  \cf3 \strokec3 $\{\cf0 \strokec2 Math.round(Math.random()*\cf6 \strokec6 10\cf0 \strokec2 )\cf3 \strokec3 \}\cf5 \strokec5  \cf3 \strokec3 $\{\cf0 \strokec2 Math.round(Math.random()*\cf6 \strokec6 10\cf0 \strokec2 )\cf3 \strokec3 \}\cf5 \strokec5  \cf3 \strokec3 $\{\cf0 \strokec2 Math.round(Math.random()*\cf6 \strokec6 10\cf0 \strokec2 )\cf3 \strokec3 \}\cf5 \strokec5  \cf3 \strokec3 $\{\cf0 \strokec2 Math.round(Math.random()*\cf6 \strokec6 10\cf0 \strokec2 )\cf3 \strokec3 \}\cf5 \strokec5  \cf3 \strokec3 $\{\cf0 \strokec2 Math.round(Math.random()*\cf6 \strokec6 10\cf0 \strokec2 )\cf3 \strokec3 \}\cf5 \strokec5 `\cf0 \strokec2 ;\cb1 \
+\cb4     \cf3 \strokec3 return\cf0 \strokec2  code;\cb1 \
+\cb4 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\
+	2. login.jsx\
+	\
+	
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 import\cf0 \strokec2  axios \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "axios"\cf0 \strokec2 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 import\cf0 \strokec2  \{ useFormik \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "formik"\cf0 \strokec2 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf0 \strokec2  \{ useEffect, useState \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "react"\cf0 \strokec2 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf0 \strokec2  \{ Link, useNavigate \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "react-router-dom"\cf0 \strokec2 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf0 \strokec2  \{ useCookies \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "react-cookie"\cf0 \strokec2 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf0 \strokec2  \{ useCaptcha \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "../hooks/use-captcha"\cf0 \strokec2 ;\cb1 \
+\
+\cf3 \cb4 \strokec3 export\cf0 \strokec2  \cf3 \strokec3 function\cf0 \strokec2  ToDoLogin(props)\{\cb1 \
+\
+\cb4     \cf3 \strokec3 const\cf0 \strokec2  [users, setUsers] = useState([\{user_id:\cf3 \strokec3 null\cf0 \strokec2 , user_name:\cf3 \strokec3 null\cf0 \strokec2 , password:\cf3 \strokec3 null\cf0 \strokec2 , email:\cf3 \strokec3 null\cf0 \strokec2 \}]);\cb1 \
+\cb4     \cf3 \strokec3 let\cf0 \strokec2  navigate = useNavigate();\cb1 \
+\cb4     \cf3 \strokec3 let\cf0 \strokec2  code = useCaptcha();\cb1 \
+\
+\cb4     \cf3 \strokec3 const\cf0 \strokec2  [cookies, setCookie, removeCookie] = useCookies([\cf5 \strokec5 'userid'\cf0 \strokec2 ,\cf5 \strokec5 'username'\cf0 \strokec2 ]);\cb1 \
+\
+\cb4     \cf3 \strokec3 function\cf0 \strokec2  LoadUsers()\{\cb1 \
+\cb4         axios(\cf5 \strokec5 'http://localhost:3000/users'\cf0 \strokec2 )\cb1 \
+\cb4         .then(response\cf3 \strokec3 =>\cf0 \strokec2 \{\cb1 \
+\cb4             setUsers(response.data);\cb1 \
+\cb4         \})\cb1 \
+\cb4     \}\cb1 \
+\
+\cb4     useEffect(()\cf3 \strokec3 =>\cf0 \strokec2 \{\cb1 \
+\cb4         LoadUsers();\cb1 \
+\cb4     \},[])\cb1 \
+\
+\cb4     \cf3 \strokec3 const\cf0 \strokec2  formik = useFormik(\{\cb1 \
+\cb4         initialValues : \{\cb1 \
+\cb4             user_id : \cf5 \strokec5 ''\cf0 \strokec2 ,\cb1 \
+\cb4             user_name: \cf5 \strokec5 ''\cf0 \strokec2 ,\cb1 \
+\cb4             password: \cf5 \strokec5 ''\cf0 \strokec2 ,\cb1 \
+\cb4             email:\cf5 \strokec5 ''\cf0 \cb1 \strokec2 \
+\cb4         \},\cb1 \
+\cb4         onSubmit: (user)\cf3 \strokec3 =>\cf0 \strokec2 \{\cb1 \
+\cb4              \cf3 \strokec3 var\cf0 \strokec2  userDetails = users.find(item\cf3 \strokec3 =>\cf0 \strokec2  item.user_id===user.user_id);\cb1 \
+\cb4              \cf3 \strokec3 if\cf0 \strokec2 (userDetails)\cb1 \
+\cb4              \{\cb1 \
+\cb4                 \cf3 \strokec3 if\cf0 \strokec2 (userDetails.password===user.password)\{\cb1 \
+\cb4                     setCookie(\cf5 \strokec5 'userid'\cf0 \strokec2 , userDetails.user_id);\cb1 \
+\cb4                     setCookie(\cf5 \strokec5 'username'\cf0 \strokec2 , userDetails.user_name);\cb1 \
+\cb4                     navigate(\cf5 \strokec5 '/dashboard'\cf0 \strokec2 );\cb1 \
+\cb4                 \} \cf3 \strokec3 else\cf0 \strokec2  \{\cb1 \
+\cb4                     alert(\cf5 \strokec5 'Invalid Password'\cf0 \strokec2 );\cb1 \
+\cb4                 \}\cb1 \
+\cb4              \} \cf3 \strokec3 else\cf0 \strokec2 \{\cb1 \
+\cb4                 alert(\cf5 \strokec5 'Invalid User Id'\cf0 \strokec2 );\cb1 \
+\cb4              \}\cb1 \
+\cb4         \}\cb1 \
+\cb4     \})\cb1 \
+\
+\cb4     \cf3 \strokec3 return\cf0 \strokec2 (\cb1 \
+\cb4         \cf7 \cb4 \strokec7 <div\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 "container-fluid"\cf7 \cb4 \strokec7 >\cf0 \cb1 \strokec2 \
+\cb4             \cf7 \cb4 \strokec7 <form\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 onSubmit\cf0 \cb4 \strokec2 =\cf3 \strokec3 \{\cf0 \strokec2 formik.handleSubmit\cf3 \strokec3 \}\cf0 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf3 \strokec3 \{\cf5 \strokec5 `p-4 \cf3 \strokec3 $\{\cf0 \strokec2 props.width\cf3 \strokec3 \}\cf5 \strokec5 `\cf3 \strokec3 \}\cf7 \cb4 \strokec7 >\cf0 \cb1 \strokec2 \
+\cb4                 \cf7 \cb4 \strokec7 <h4\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 "bi bi-person-fill"\cf7 \cb4 \strokec7 >\cf0 \cb4 \strokec2  User Login\cf7 \cb4 \strokec7 </h4>\cf0 \cb1 \strokec2 \
+\cb4                 \cf7 \cb4 \strokec7 <dl>\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <dt>\cf0 \cb4 \strokec2 User Id\cf7 \cb4 \strokec7 </dt>\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <dd><input\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 type\cf0 \cb4 \strokec2 =\cf5 \strokec5 "text"\cf0 \strokec2  \cf8 \cb4 \strokec8 onChange\cf0 \cb4 \strokec2 =\cf3 \strokec3 \{\cf0 \strokec2 formik.handleChange\cf3 \strokec3 \}\cf0 \strokec2  \cf8 \cb4 \strokec8 name\cf0 \cb4 \strokec2 =\cf5 \strokec5 "user_id"\cf0 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 "form-control"\cf0 \strokec2  \cf7 \cb4 \strokec7 /></dd>\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <dt>\cf0 \cb4 \strokec2 Password\cf7 \cb4 \strokec7 </dt>\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <dd><input\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 type\cf0 \cb4 \strokec2 =\cf5 \strokec5 "password"\cf0 \strokec2  \cf8 \cb4 \strokec8 onChange\cf0 \cb4 \strokec2 =\cf3 \strokec3 \{\cf0 \strokec2 formik.handleChange\cf3 \strokec3 \}\cf0 \strokec2  \cf8 \cb4 \strokec8 name\cf0 \cb4 \strokec2 =\cf5 \strokec5 "password"\cf0 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 "form-control"\cf0 \strokec2  \cf7 \cb4 \strokec7 /></dd>\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <dt>\cf0 \cb4 \strokec2 Verify Code\cf7 \cb4 \strokec7 </dt>\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <dd>\cf3 \cb4 \strokec3 \{\cf0 \strokec2 code\cf3 \strokec3 \}\cf7 \cb4 \strokec7 </dd>\cf0 \cb1 \strokec2 \
+\cb4                 \cf7 \cb4 \strokec7 </dl>\cf0 \cb1 \strokec2 \
+\cb4                 \cf7 \cb4 \strokec7 <button\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 type\cf0 \cb4 \strokec2 =\cf5 \strokec5 "submit"\cf0 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 "btn btn-primary w-100"\cf7 \cb4 \strokec7 >\cf0 \cb4 \strokec2 Login\cf7 \cb4 \strokec7 </button>\cf0 \cb1 \strokec2 \
+\cb4                 \cf7 \cb4 \strokec7 <div\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 className\cf0 \cb4 \strokec2 =\cf5 \strokec5 "mt-4"\cf7 \cb4 \strokec7 >\cf0 \cb1 \strokec2 \
+\cb4                     \cf7 \cb4 \strokec7 <Link\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 to\cf0 \cb4 \strokec2 =\cf5 \strokec5 "/register"\cf7 \cb4 \strokec7 >\cf0 \cb4 \strokec2 New User Register\cf7 \cb4 \strokec7 </Link>\cf0 \cb1 \strokec2 \
+\cb4                 \cf7 \cb4 \strokec7 </div>\cf0 \cb1 \strokec2 \
+\cb4             \cf7 \cb4 \strokec7 </form>\cf0 \cb1 \strokec2 \
+\cb4         \cf7 \cb4 \strokec7 </div>\cf0 \cb1 \strokec2 \
+\cb4     )\cb1 \
+\cb4 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+		- Every custom hook can have the phases like mount and unmount. \
+		- Hook mount is executed while loading and unmount, while changing hook. \
+		\
+  
+\f1\b Ex: src/hooks/use-fetchdata.jsx\
+	\
+
+\f2\b0\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 import\cf0 \strokec2  axios \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "axios"\cf0 \strokec2 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 import\cf0 \strokec2  \{ useEffect, useState \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "react"\cf0 \strokec2 ;\cb1 \
+\
+\cf3 \cb4 \strokec3 export\cf0 \strokec2  \cf3 \strokec3 function\cf0 \strokec2  useFetchData(url)\{\cb1 \
+\cb4     \cf3 \strokec3 const\cf0 \strokec2  [data, setData] = useState([]);\cb1 \
+\
+\cb4     useEffect(()\cf3 \strokec3 =>\cf0 \strokec2 \{\cb1 \
+\cb4         axios.get(url)\cb1 \
+\cb4         .then(response\cf3 \strokec3 =>\cf0 \strokec2  setData(response.data));\cb1 \
+\cb4     \},[url])\cb1 \
+\
+\cb4     \cf3 \strokec3 return\cf0 \strokec2  data;\cb1 \
+\cb4 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+		
+\f1\b demo.jsx\
+	\
+		
+\f2\b0\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 import\cf0 \strokec2  \{ useFetchData \} \cf3 \strokec3 from\cf0 \strokec2  \cf5 \strokec5 "../hooks/use-fetchdata"\cf0 \strokec2 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 const\cf0 \strokec2  appointments = useFetchData(\cf5 \strokec5 'http://localhost:3000/appointments'\cf0 \strokec2 );\cb1 \
+
+\f0\fs64 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+		
+\f2\fs46 \cf7 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 <ul>\cf0 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4          \cf3 \strokec3 \{\cf0 \strokec2 appointments.map(appointment\cf3 \strokec3 =>\cf7 \cb4 \strokec7 <li\cf0 \cb4 \strokec2  \cf8 \cb4 \strokec8 key\cf0 \cb4 \strokec2 =\cf3 \strokec3 \{\cf0 \strokec2 appointment.id\cf3 \strokec3 \}\cf7 \cb4 \strokec7 >\cf3 \cb4 \strokec3 \{\cf0 \strokec2 appointment.title\cf3 \strokec3 \}\cf7 \cb4 \strokec7 </li>\cf0 \cb4 \strokec2 )\cf3 \strokec3 \}\cf0 \cb1 \strokec2 \
+\cb4      \cf7 \cb4 \strokec7 </ul>\cf0 \cb1 \strokec2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+												
+\f1\b React Built-In Hooks\
+		
+\f0\b0 \
+		
+\f1\b \
+\
+\
+\
+\
+\
+\
+
+\f0\b0 \
+\
+\
+\
+}

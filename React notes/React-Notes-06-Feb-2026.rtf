@@ -1,0 +1,88 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 \
+ 
+\f1\b Handling User State [Login to Logout]\
+	
+\f0\b0 - There are various client side state management techniques, which we can use to \
+	   manage the user state.\
+			a) Query String\
+			b) Local Storage\
+			c) Session Storage\
+			d) Cookies\
+	- The best state management technique for login is 
+\f1\b Cookies.\
+	
+\f0\b0 - Cookies can be\
+			a) In memory 		: Temporary\
+			b) Persistent 			: Permanent \
+	- In actual DOM cookie is managed by using 
+\f1\b \'93document\'94 
+\f0\b0 object.\
+	- React requires a 3rd party library to manage cookies with virtual DOM. \
+	\
+	
+\f1\b 1. Install React Cookie Library\
+\
+			
+\f0\b0 > npm  install   react-cookie  --save\
+\
+	
+\f1\b 2. Go to \'93main.jsx\'94 and configure cookie provider
+\f0\b0 \
+\
+			import  \{ CookiesProvider \}  from  \'91react-cookie\'92;\
+\
+			<CookiesProvider>\
+				<ToDoIndex />\
+			</CookiesProvider>\
+\
+			- Provider is a service object.\
+			- It is responsible for locating the value in memory and inject into component. \
+\
+	
+\f1\b 3. Cookies can be configured in any component by using \'93useCookies()\'94 hook\
+\
+			
+\f0\b0 import   \{ useCookies \}  from \'91react-cookie\'92;\
+\
+			const [cookies, setCookie, removeCookie] = useCookies([ \'91name\'92, \'91name\'92 ]);\
+\
+			
+\f1\b cookies		: 
+\f0\b0 It is a getter used to access cookie value.\
+			
+\f1\b setCookie		: 
+\f0\b0 It is a setter used to create a new cookie.\
+			
+\f1\b removeCookie 
+\f0\b0 : It is used to remove cookie explicitly from memory.\
+\
+			Syntax:\
+				 cookies[ \'91name\'92 ]		                      // returns the cookie value\
+				 setCookie( \'91name\'92, \'91value\'92, \{ expires: date \} );\
+				 removeCookie(\'91name\'92);\
+\
+		\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
