@@ -1,0 +1,243 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs64 \cf0 Summary
+\f1\b0 \
+ Slicer\
+	createSlice()\
+ Store\
+	configureStore / createStore\
+ Reducers\
+ useDispatch()\
+ Redux DevTools\
+ useOptimistic()\
+ useActionState()\
+ useFormState()\
+											
+\f0\b React Class Components\
+  
+\f1\b0 - Class is a program template.\
+  - Class in JS is configured using 2 techniques\
+		a) Class Declaration\
+	\
+					class Name\
+					\{\
+					\}\
+\
+		b) Class Expression\
+\
+					const  Name = class \{\
+\
+					\}\
+	\
+  - Class Members\
+		a) Property\
+		b) Method\
+		c) Accessor \
+		d) Constructor \
+  \
+  - Static Members\
+  - Prefixes \
+		_	 internal\
+		#	 private \
+  - Inheritance \
+  - Polymorphism \
+  - \'93this\'94 keyword \
+  \
+  
+\f0\b Issues with OOP\
+	
+\f1\b0 - They will not support low level features.\
+	- They can\'92t directly interact with hardware services. \
+	- They use more memory. \
+	- They are tedious. \
+\
+\
+   
+\f0\b Class Components:\
+   
+\f1\b0 1. A class component must extend 
+\f0\b \
+			a) React.Component 
+\f1\b0 (or)\
+			
+\f0\b b) React.PureComponent\
+	\
+	 
+\f1\b0 Syntax:\
+			export class Name extends React.Component (or) React.PureComponent\
+			\{\
+\
+			\}\
+\
+		- 
+\f0\b PureComponent 
+\f1\b0 avoids re-renders. \
+		\
+  2. Call the super constructor in derived class \
+\
+		export class Name extends React.Component\
+		\{\
+				constructor() \{\
+					super();\
+				\}\
+		\}	\
+\
+   3. It must return JSX element by using 
+\f0\b render() 
+\f1\b0 method.\
+\
+	   export class Name extends React.Component\
+	   \{\
+				constructor() \{\
+					super();\
+				\}\
+	\
+				render() \{\
+					return( \
+							< > JSX </>\
+							  )\
+						\}\
+		\}\
+\
+\
+	
+\f0\b State in Class Component:\
+	
+\f1\b0 - State is built-in for class component. \
+	- You have to configure state while creating component [in constructor]\
+\
+		Syntax:\
+				constructor() \{\
+					 this.state = \{ \}\
+				\}\
+\
+	- State is object type with key and value collection. \
+	- You can set state by using \'93
+\f0\b this.setState()
+\f1\b0 \'94 method.\
+	- You can access state by using 
+\f0\b \'93this.state.key\'94.\
+\
+   Component Life Cycle Methods\
+	
+\f1\b0 	a) componentDidMount()\
+		b) componentWillMount()\
+		c) componentWillUnmount()\
+		d) componentDidUpdate() \
+	\
+  Ex: login.jsx\
+\
+  
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  React \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \strokec4 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 class\cf0 \strokec4  UserLogin \cf2 \strokec2 extends\cf0 \strokec4  React.Component\cb1 \
+\cb3 \{\cb1 \
+\cb3      \cf2 \strokec2 constructor\cf0 \strokec4 ()\{\cb1 \
+\cb3          \cf2 \strokec2 super\cf0 \strokec4 ();\cb1 \
+\cb3          \cf2 \strokec2 this\cf0 \strokec4 .state = \{\cb1 \
+\cb3               title: \cf5 \strokec5 'User Login'\cf0 \strokec4 ,\cb1 \
+\cb3               categories: [\cf5 \strokec5 'All'\cf0 \strokec4 ,\cf5 \strokec5 'Fashion'\cf0 \strokec4 , \cf5 \strokec5 'Electronics'\cf0 \strokec4 ]\cb1 \
+\cb3          \}\cb1 \
+\cb3      \}\cb1 \
+\cb3      componentDidMount()\{\cb1 \
+\cb3         \cf2 \strokec2 this\cf0 \strokec4 .setState(\{title: \cf5 \strokec5 'Customer Login'\cf0 \strokec4 \});\cb1 \
+\cb3      \}\cb1 \
+\cb3      render()\{\cb1 \
+\cb3         \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3             \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container mt-3"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <h2>\cf2 \strokec2 \{this\cf0 \strokec4 .state.title\cf2 \strokec2 \}\cf6 \strokec6 </h2>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <ol>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 this\cf0 \strokec4 .state.categories.map(category\cf2 \strokec2 =>\cf6 \strokec6 <li\cf0 \strokec4  \cf7 \strokec7 key\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 category\cf2 \strokec2 \}\cf6 \strokec6 >\cf2 \strokec2 \{\cf0 \strokec4 category\cf2 \strokec2 \}\cf6 \strokec6 </li>\cf0 \strokec4 )\cb1 \
+\cb3                     \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </ol>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3         )\cb1 \
+\cb3      \}\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	
+\f0\b Event Binding in Class Components:\
+	
+\f1\b0 1. Event in class maps to a method. \
+\
+				handleClick(e)\
+				\{\
+				\}\
+				<button onClick=\{ this.handleClick \} > \
+\
+	2. All Synthetic Events library is same \
+	\
+	3. It is mandatory to bind the event handlers with current class memory if they are\
+	 	using state. \
+\
+		Syntax:\
+				constructor()\
+				\{\
+					super();\
+					this.state = \{ \}\
+					this.handleClick = this.handleClick.bind(this);\
+				\}\
+ Ex:\
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  React \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \strokec4 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 class\cf0 \strokec4  UserLogin \cf2 \strokec2 extends\cf0 \strokec4  React.Component\cb1 \
+\cb3 \{\cb1 \
+\cb3      \cf2 \strokec2 constructor\cf0 \strokec4 ()\{\cb1 \
+\cb3          \cf2 \strokec2 super\cf0 \strokec4 ();\cb1 \
+\cb3          \cf2 \strokec2 this\cf0 \strokec4 .state = \{\cb1 \
+\cb3               msg: \cf5 \strokec5 ''\cf0 \cb1 \strokec4 \
+\cb3          \}\cb1 \
+\cb3          \cf2 \strokec2 this\cf0 \strokec4 .handleInsertClick = \cf2 \strokec2 this\cf0 \strokec4 .handleInsertClick.bind(\cf2 \strokec2 this\cf0 \strokec4 );\cb1 \
+\cb3      \}\cb1 \
+\
+\cb3      handleInsertClick()\{\cb1 \
+\cb3         \cf2 \strokec2 this\cf0 \strokec4 .setState(\{msg: \cf5 \strokec5 'Record Inserted'\cf0 \strokec4 \});\cb1 \
+\cb3      \}\cb1 \
+\cb3      \cb1 \
+\cb3      render()\{\cb1 \
+\cb3         \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3             \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container mt-3"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <h2>\cf0 \strokec4 Class Component\cf6 \strokec6 </h2>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 onClick\cf0 \strokec4 =\cf2 \strokec2 \{this\cf0 \strokec4 .handleInsertClick\cf2 \strokec2 \}\cf0 \strokec4  \cf6 \strokec6 >\cf0 \strokec4 Insert\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <p>\cf2 \strokec2 \{this\cf0 \strokec4 .state.msg\cf2 \strokec2 \}\cf6 \strokec6 </p>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3         )\cb1 \
+\cb3      \}\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 	\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

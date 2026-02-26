@@ -1,0 +1,208 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0   
+\f1\b Controlled Components in Typescript\
+	
+\f0\b0 - Props in controlled component is configured as Object type.\
+	- It uses a schema or contract to define type. \
+\
+	Syntax:\
+			export function Navbar(props:\{key:dataType\})\
+			\{\
+			\}\
+\
+  
+\f1\b Event Type\
+	 
+\f0\b0 - All events are derived from SyntheticEvent base. \
+	 - Event arguments are of 
+\f1\b SynthenticEvent 
+\f0\b0 type.\
+	\
+	Syntax:\
+			function handleChange(e: SyntheticEvent)\
+			\{\
+			\}\
+\
+	 
+\f1\b Route Object in Javascript & Typescript\
+	 
+\f0\b0 - React applications that change their routes regularly and need frequent extensions\
+	  are configured with Router Object. \
+	 - Javascript is not strongly typed hence it can configure object directly.\
+\
+	
+\f1\b Javascript Router Object\
+	
+\f0\b0 1. Create a new routes folder and add into \'93src\'94.\
+	2. Add a new file \'93routes.jsx\'94\
+	3. Configure routes \
+\
+			export const router = createBrowserRouter([ \
+					\{\
+					   path: \'91/\'91,\
+					   element: <E />,\
+					   children: [\
+							\{ path:\'92child\'92, element=<C /> \} \
+					   ]\
+					\}\
+			])\
+	\
+	4. Go to \'93main.jsx\'94\
+	\
+			import \{ RouteProvider\}  from \'91react-router-dom\'92;\
+			import \{ router \} from \'91routes/routes\'92;\
+\
+			<RouteProvider router=\{router\} />\
+ \
+	Ex: routes/routes.jsx\
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ createBrowserRouter \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react-router-dom"\cf0 \strokec4 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ FoodIndex \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../food-delivery/food-index"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ FoodMenu \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../food-delivery/food-menu"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ NotFound \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../food-delivery/not-found"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ FoodDetails \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "../food-delivery/food-details"\cf0 \strokec4 ;\cb1 \
+\
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 const\cf0 \strokec4  router = createBrowserRouter([\cb1 \
+\cb3      \{\cb1 \
+\cb3         path: \cf5 \strokec5 '/'\cf0 \strokec4 ,\cb1 \
+\cb3         element: \cf6 \strokec6 <FoodIndex\cf0 \strokec4  \cf6 \strokec6 />\cf0 \strokec4 ,\cb1 \
+\cb3         errorElement: \cf6 \strokec6 <NotFound\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3      \},\cb1 \
+\cb3      \{\cb1 \
+\cb3         path:\cf5 \strokec5 '/menu'\cf0 \strokec4 ,\cb1 \
+\cb3         element: \cf6 \strokec6 <FoodMenu\cf0 \strokec4  \cf6 \strokec6 />\cf0 \strokec4 ,\cb1 \
+\cb3         children: [\cb1 \
+\cb3              \{\cb1 \
+\cb3                 path:\cf5 \strokec5 'details'\cf0 \strokec4 ,\cb1 \
+\cb3                 element: \cf6 \strokec6 <FoodDetails\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3              \}\cb1 \
+\cb3         ]\cb1 \
+\cb3      \},\cb1 \
+\cb3      \{\cb1 \
+\cb3         path:\cf5 \strokec5 '*'\cf0 \strokec4 ,\cb1 \
+\cb3         element: \cf6 \strokec6 <NotFound\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3      \}\cb1 \
+\cb3 ])\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\
+		
+\f1\b Typescript Router Object\
+	\
+		
+\f0\b0 1. Create routes folder in \'93src\'94\
+		2. Add \'93routes.tsx\'94\
+		3. Configure routes collection as RouteObject type.\
+\
+			import \{ createBrowserRouter, type RouteObject \}  from \'91react-router-dom\'92;\
+\
+			const routes : RouteObject[] = [\
+				\{\
+					path: \'91/\'91,\
+					element: <Component/>,\
+					children: [ ]\
+				\}\
+			];\
+			\
+			export const router = createBrowserRouter(routes);\
+	\
+		4. Router Provider in main.tsx is same\
+\
+			<RouteProvider router=\{ router \} />      => router from routes/routes.tsx\
+\
+\
+	Ex: routes.tsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ createBrowserRouter, \cf2 \strokec2 type\cf0 \strokec4  RouteObject\} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react-router-dom"\cf0 \strokec4 ;\cb1 \
+\
+\
+\cf2 \cb3 \strokec2 const\cf0 \strokec4  routes:RouteObject[] = [\cb1 \
+\cb3     \{\cb1 \
+\cb3         path:\cf5 \strokec5 ''\cf0 \strokec4 ,\cb1 \
+\cb3         element: \cf6 \strokec6 <></>\cf0 \cb1 \strokec4 \
+\cb3     \}\cb1 \
+\cb3 ]\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 const\cf0 \strokec4  router = createBrowserRouter(routes);\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+										
+\f1\b Typescript Video Library Project\
+\
+  Modules:
+\f0\b0 \
+  
+\f1\b 1. Admin \
+		
+\f0\b0 - Can login , Dashboard\
+		- Upload Video [YouTube Embedded]\
+		- Edit Video	\
+		- Delete Video\
+		- Filter, Sort, Pagination \
+\
+  
+\f1\b 2. User\
+		
+\f0\b0 - Can register\
+		- Can Login\
+		- User Dashboard\
+		- User can view, search, sort, like, dislike, comment\
+		- Save video to watch later [Redux]\
+   \
+	
+\f1\b Technologies [MERN Stack App]\
+		
+\f0\b0 - React for UI\
+		- Express JS middleware \
+		- Node JS for server\
+		- MongoDB for database \
+\
+	For Backend :\
+\
+		> npm install  express  cors  mongodb --save \
+\
+	For Front End:\
+		\
+		> npm install  formik  yup  axios  react-router-dom react-cookie bootstrap bootstrap-icons @reduxjs/toolkit  react-redux  @mui/material @emotion/styled @emotion/react \
+\
+	 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

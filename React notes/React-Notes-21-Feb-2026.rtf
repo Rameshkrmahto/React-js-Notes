@@ -1,0 +1,277 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red255\green255\blue255;
+\red15\green112\blue1;\red19\green118\blue70;\red144\green1\blue18;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c0\c50196\c0;\cssrgb\c3529\c52549\c34510;\cssrgb\c63922\c8235\c8235;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0  
+\f1\b Typescript Data Types\
+	- Primitive Types\
+	- Non Primitive\
+	- Union of Types\
+	- Type Inference \
+	- Tuple \
+	- Map Generic \
+	\
+	Date Type:\
+		
+\f0\b0 - It is configured using 
+\f1\b Date 
+\f0\b0 data type and Date constructor.\
+		- All date and time methods are same. \
+		
+\f1\b \
+		
+\f0\b0 Syntax:\
+				let  departure:Date = new Date(\'93yy-mm-dd hrs:min:sec\'94);\
+	\
+	
+\f1\b Regular Expression Type:\
+		
+\f0\b0 - It is set of meta chars and quantifiers defined in \'93/ /\'93.\
+		- Typescript provides 
+\f1\b RegExp 
+\f0\b0 as type for regular expression. \
+\
+		Syntax:\
+				let pattern:RegExp = /^\\d\{10\}$/;\
+\
+		- It is verified by using string 
+\f1\b match() 
+\f0\b0 method. \
+\
+	
+\f1\b Note:  Statements & Operators are same as in Javascript. \
+\
+										 		Typescript Function\
+	 
+\f0\b0 - A typescript function requires the return type to configure or to keep void. \
+	 - It requires data type for parameters. \
+\
+	  Syntax:\
+					function Name(params:dataType) : void | dataType\
+					\{\
+							return value;  // if not void \
+					\}
+\f1\b \
+\
+	  
+\f0\b0 Ex:\
+					function Add(a:number, b:number) : number\
+					\{\
+						return a + b;\
+					\}
+\f1\b \
+	\
+	 
+\f0\b0 - You can configure optional parameters using \'93?\'94, but it requires to verify by using\
+	    undefined. \
+\
+	- All optional parameters must be last in formal list. \
+\
+ 	 Syntax:\
+				function Name(param1:type, param2?type)\
+				\{\
+						if(param2) \{\
+								// when defined\
+						\}\
+				\}
+\f1\b \
+ 
+\f0\b0 Ex:	
+\f2\fs46 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 function\cf0 \strokec2  Details(id:number, name:string, price?:number, rating?:number)\{\cb1 \
+\cb4     \cf3 \strokec3 if\cf0 \strokec2 (price)\{\cb1 \
+\cb4          \cf5 \strokec5 // use price\cf0 \cb1 \strokec2 \
+\cb4     \} \cf3 \strokec3 else\cf0 \strokec2  \{\cb1 \
+\cb4         \cf5 \strokec5 // without price\cf0 \cb1 \strokec2 \
+\cb4     \}\cb1 \
+\cb4 \}\cb1 \
+\cb4 Details(\cf6 \strokec6 1\cf0 \strokec2 , \cf7 \strokec7 "TV"\cf0 \strokec2 );\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 	\
+		
+\f0\b0 - Rest parameter is defined as array. You can allow various types of arguments \
+		  or restrict to specific type.\
+\
+		Syntax:\
+					function Name(\'85params:any[]) : void\
+					\{\
+					\}\
+				    Name(1, \'91TV, true);\
+\
+		- Function currying and higher order functions require the type defined using \
+		  
+\f1\b \'93Function\'94 
+\f0\b0 interface. \
+		\
+		Syntax:\
+				 function Name(success:Function, failure:Function) : Function\
+				 \{\
+				 \}\
+	Ex:\
+	
+\f2\fs46 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 function\cf0 \strokec2  Validation(password:string, success:Function, failure:Function)\{\cb1 \
+\cb4     \cf3 \strokec3 if\cf0 \strokec2 (password===\cf7 \strokec7 'abc'\cf0 \strokec2 )\{\cb1 \
+\cb4          success();\cb1 \
+\cb4     \} \cf3 \strokec3 else\cf0 \strokec2  \{\cb1 \
+\cb4          failure();\cb1 \
+\cb4     \}\cb1 \
+\cb4 \}\cb1 \
+\cb4 Validation(\cf7 \strokec7 'abc'\cf0 \strokec2 , \cf3 \strokec3 function\cf0 \strokec2 ()\{\}, \cf3 \strokec3 function\cf0 \strokec2 ()\{\})\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+		 									 
+\f1\b Typescript OOP\
+  1. Contracts\
+		
+\f0\b0 - A contract defines rules for designing component. \
+		- It is easy to extend, reuse, maintain and test contracts. \
+		- It must contain only rules not their implementation. \
+		- Contract in OOP is designed using 
+\f1\b \'93interface\'94. \
+\
+		
+\f0\b0 Syntax:\
+				interface Name\
+				\{\
+					// rules\
+				\}\
+\
+				let obj : Name = \{ \}        \
+		\
+		- Rule can be for a property or method. \
+\
+		Syntax:\
+				interface Name\
+				\{\
+					property: type;\
+					method(): type;\
+				\}\
+ Ex:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 interface\cf0 \strokec2  IProduct\cb1 \
+\cb4 \{\cb1 \
+\cb4     Name:string;\cb1 \
+\cb4     Price:number;\cb1 \
+\cb4     Qty:number;\cb1 \
+\cb4     Total():number;\cb1 \
+\cb4     Print():void;\cb1 \
+\cb4 \}\cb1 \
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  product:IProduct = \{\cb1 \
+\cb4    Name: \cf7 \strokec7 'TV'\cf0 \strokec2 ,\cb1 \
+\cb4    Price: \cf6 \strokec6 34000\cf0 \strokec2 ,\cb1 \
+\cb4    Qty: \cf6 \strokec6 2\cf0 \strokec2 ,\cb1 \
+\cb4    Total: \cf3 \strokec3 function\cf0 \strokec2 ()\{\cb1 \
+\cb4       \cf3 \strokec3 return\cf0 \strokec2  \cf3 \strokec3 this\cf0 \strokec2 .Qty * \cf3 \strokec3 this\cf0 \strokec2 .Price;\cb1 \
+\cb4    \},\cb1 \
+\cb4    Print: \cf3 \strokec3 function\cf0 \strokec2 ()\{\cb1 \
+\cb4       console.log(\cf7 \strokec7 `Name=\cf3 \strokec3 $\{this\cf0 \strokec2 .Name\cf3 \strokec3 \}\cf7 \strokec7 `\cf0 \strokec2 );\cb1 \
+\cb4    \}\cb1 \
+\cb4 \}\cb1 \
+\cb4 product.Print();\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\
+
+\f1\b 	
+\f0\b0  - It can have optional rules defined using \'93?\'94\
+	 - Optional rules are required to configure 
+\f1\b Goal 
+\f0\b0 for a module.
+\f1\b \
+		\
+				[
+\f0\b0 objective			: time bound and mandatory ]\
+				[goal					: no time bound and optional ]
+\f1\b \
+\
+	 
+\f0\b0 - It can have readonly rules. \
+	 - It allows to initialize but will not allow to assign. \
+	 - You can extend rules. \
+	 - A contract can be extended, it is the process of adding new rules without \
+	   disturbing the existing. \
+\
+	 Syntax:\
+			interface Contract1\
+			\{\
+			\}\
+			interface Contract2 extends Contract1\
+			\{\
+			\}\
+			interface Final extends Contract1, Contract2\
+			\{\
+			\}\
+	
+\f1\b \
+	 
+\f0\b0 Ex:\
+
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 interface\cf0 \strokec2  ICategory\{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4     CategoryName: string;\cb1 \
+\cb4 \}\cb1 \
+\cf3 \cb4 \strokec3 interface\cf0 \strokec2  IVendor\{\cb1 \
+\cb4     VendorName:string;\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 interface\cf0 \strokec2  IProduct \cf3 \strokec3 extends\cf0 \strokec2  ICategory, IVendor\cb1 \
+\cb4 \{\cb1 \
+\cb4     Name:string;\cb1 \
+\cb4     \cf3 \strokec3 readonly\cf0 \strokec2  Price:number;\cb1 \
+\cb4     Qty:number;\cb1 \
+\cb4     Rating?:number;\cb1 \
+\cb4     Total():number;\cb1 \
+\cb4     Print():void;\cb1 \
+\cb4 \}\cb1 \
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  product:IProduct = \{\cb1 \
+\cb4    Name: \cf7 \strokec7 'TV'\cf0 \strokec2 ,\cb1 \
+\cb4    Price: \cf6 \strokec6 34000\cf0 \strokec2 ,\cb1 \
+\cb4    Qty: \cf6 \strokec6 2\cf0 \strokec2 ,\cb1 \
+\cb4    CategoryName: \cf7 \strokec7 'Electronics'\cf0 \strokec2 ,\cb1 \
+\cb4    VendorName : \cf7 \strokec7 'Reliance Digital'\cf0 \strokec2 ,\cb1 \
+\cb4    Total: \cf3 \strokec3 function\cf0 \strokec2 ()\{\cb1 \
+\cb4       \cf3 \strokec3 return\cf0 \strokec2  \cf3 \strokec3 this\cf0 \strokec2 .Qty * \cf3 \strokec3 this\cf0 \strokec2 .Price;\cb1 \
+\cb4    \},\cb1 \
+\cb4    Print: \cf3 \strokec3 function\cf0 \strokec2 ()\{\cb1 \
+\cb4       console.log(\cf7 \strokec7 `Name=\cf3 \strokec3 $\{this\cf0 \strokec2 .Name\cf3 \strokec3 \}\cf7 \strokec7 `\cf0 \strokec2 );\cb1 \
+\cb4    \}\cb1 \
+\cb4 \}\cb1 \
+\cb4 product.Price = \cf6 \strokec6 60000\cf0 \strokec2 ;\cb1 \
+\cb4 product.Print();\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	2. Components\
+		
+\f0\b0 - Class is considered as a component. \
+		- Typescript class is similar to Javascript class with few changes \
+			a) It can have static and non static members [ available in JS latest ]\
+			b) It provides access modifiers [public, private, protected]\
+		- It can implement a contract. \
+		
+\f1\b \
+\
+\
+\
+\
+\
+\
+\
+\
+}

@@ -1,0 +1,226 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 												
+\f1\b React Built-In Hooks\
+   1. useEffect()\
+			
+\f0\b0 - It defines actions to perform while mounting & unmounting component. \
+			- Component mounts after creation of component object. \
+			- Component unmounts when user navigates to another component. \
+			\
+			Syntax:\
+					useEffect( ( )=> \{ \
+	\
+						      // actions on mount\
+		\
+							  return ()=> \{ \
+								 \
+								// actions on unmount \
+	\
+							 \}\
+\
+					\},[dependencies])\
+\
+			 - Typically the mount actions include \
+					a) Initialization of state with new values\
+					b) Loading API data\
+					c) Executing functions to get ready on mount etc.\
+			\
+			- Typically the unmount actions include\
+					a) Disconnecting the subscribed methods \
+					b) Removing event listeners					c) Reset the initialized values \
+					d) Clean up the memory etc.\
+\
+			- A component mounts only once, you can configure the dependencies to \
+			  re-mount the component. It mounts again when the dependency changes. \
+ \
+  Ex:  effect-demo.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  Login()\{\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3          console.log(\cf5 \strokec5 'Login Mounted'\cf0 \strokec4 );\cb1 \
+\cb3          \cf2 \strokec2 return\cf0 \strokec4 ()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             console.log(\cf5 \strokec5 'Login Unmounted'\cf0 \strokec4 );\cb1 \
+\cb3          \}\cb1 \
+\cb3     \},[])\cb1 \
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <h3>\cf0 \strokec4 Login\cf6 \strokec6 </h3>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  Register()\{\cb1 \
+\
+\cb3      useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3          console.log(\cf5 \strokec5 'Register Mounted'\cf0 \strokec4 );\cb1 \
+\cb3          \cf2 \strokec2 return\cf0 \strokec4 ()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             console.log(\cf5 \strokec5 'Register Unmounted'\cf0 \strokec4 );\cb1 \
+\cb3          \}\cb1 \
+\cb3     \},[])\cb1 \
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <h3>\cf0 \strokec4 Register\cf6 \strokec6 </h3>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  EffectDemo()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [view, setView] = useState(\cf5 \strokec5 ''\cf0 \strokec4 );\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleLoginClick()\{\cb1 \
+\cb3         setView(\cf6 \strokec6 <Login\cf0 \strokec4  \cf6 \strokec6 />\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  handleRegisterClick()\{\cb1 \
+\cb3         setView(\cf6 \strokec6 <Register\cf0 \strokec4  \cf6 \strokec6 />\cf0 \strokec4 );\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3      \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \strokec7 className\cf0 \strokec4 =\cf5 \strokec5 "p-5"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleLoginClick\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \strokec4 Login\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \strokec7 onClick\cf0 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 handleRegisterClick\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \strokec4 Register\cf6 \strokec6 </button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <hr\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 \{\cf0 \strokec4 view\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3      )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 			\
+			
+\f1\b FAQ\'92s:\
+				
+\f0\b0 1. Can we define multiple mount phases for a component?\
+				A. Yes. You can define multiple useEffects() in a component.\
+	\
+				2. Why we need multiple useEffects() in a component?\
+				A. To render and define various actions on mount.\
+					 You can conditionally mount different actions for a component. \
+\
+	
+\f1\b 2.  useState()\
+		
+\f0\b0 - It uses the component local state created for component.\
+		- It is mutable and accessible across requests in a component. \
+		- It is not accessible to child components. \
+		- It is destroyed when component navigates to another component. \
+		- It is a memory that can handle any type of data.\
+\
+		Syntax:\
+				const  [ get, set ] = useState( value );\
+\
+		- State uses a getter to read and return value.\
+		- It uses a setter to re-initialize a new value. \
+\
+		
+\f1\b FAQ\'92s: 
+\f0\b0 Refer to your previous notes \
+				\
+	
+\f1\b 3. useContext()\
+		
+\f0\b0 - It uses context memory created for a component.\
+		- It is a solution for Props drilling. \
+		- It makes the memory of a component accessible to its child components at \
+		  any level of hierarchy. \
+\
+		Syntax:\
+				 let  ContextName = createContext(null);\
+\
+				let context = useContext(ContextName);\
+	\
+				<ContextName  value=\{ data \} >\
+\
+					\'85 context scope .. for child components \'85 \
+\
+				</ContextName>\
+\
+		- You can carry data from child to parent by using 
+\f1\b Custom Events. 
+\f0\b0 \
+	\
+	
+\f1\b 4. useRef()\
+			
+\f0\b0 - It configures a reference memory.\
+			- It is intended to use in a background process.\
+			- It can store value and provide without re-render. \
+\
+			Syntax:\
+				 let   thread = useRef(null);\
+				 thread.current = value / function;\
+\
+	
+\f1\b 5. useMemo()\
+			
+\f0\b0 - It allocates a memory to store data.\
+			- Memory is a cache updated only when any dependency changes. \
+			- It provides data across multiple requests without re-rendering.\
+			- It avoids round trips. \
+			- Round trip is the process of requesting content every time from server. \
+			\
+			Syntax:\
+				 useMemo( ()=>\{ \
+	\
+					     return data;\
+	\
+				\},[dependencies])\
+\
+				var  data = useMemo( ()=> \{ return data \}, [ dependencies ]);\
+\
+				data.find().filter().sort() etc..\
+\
+	 
+\f1\b 6. useCallback()\
+			
+\f0\b0 - It is same as useMemo().\
+			- Memo can memoized the data and keep cache. \
+			- Callback can keep a function in memory. \
+			- You can execute function without re-render.\
+			- It can update when dependency changes.\
+\
+			Syntax:\
+				useCallback(()=>\{ \}, [ dependency ])\
+\
+				const LoginClick = useCallBack( ()=>\{ \
+							 setCookie();\
+							 other actions on login..\
+				\},[cookies])			\
+							\
+				<button onClick=\{ LoginClick \} > Login </button>\
+\
+	 
+\f1\b 7. useReducer
+\f0\b0 	\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

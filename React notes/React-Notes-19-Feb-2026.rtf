@@ -1,0 +1,133 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 											
+\f1\b TypeScript Architecture\
+ 1. Core Compiler\
+	 
+\f0\b0 - It is responsible for translating the typescript code into OS native. \
+	 - It identifies the issues in code and reports as errors. \
+	 - Compiler manages various interactions through different components\
+			\
+			core.ts				loads the core library required for program.\
+			program.ts		checks the code blocks and execution flow.\
+			scanner.ts		responsible for handling input.\
+			emitter.ts			responsible for handling output.\
+			checker.ts		verifies the data types.\
+			parser.ts			responsible for converting one type to another.\
+			etc.\
+\
+ 
+\f1\b 2. Standalone TS compiler	\
+	
+\f0\b0 - It is a trans compiler responsible for translating Typescript code into Javascript. \
+	- 
+\f1\b \'93tsc.ts\'94
+\f0\b0  handles trans compiling.\
+\
+ 
+\f1\b 3. Language Service\
+	
+\f0\b0 - Service is a pre-defined business logic. \
+	- It is a set of factories with functions & values required for typescript application.\
+	- \'93
+\f1\b services.ts\'94 
+\f0\b0 handles library. \
+	- It is OS relative library.\
+\
+ 
+\f1\b 4. Managed Language Service \
+	
+\f0\b0 - Managed code is the code understandable to every operating system service. \
+	- It makes the library OS neutral. \
+\
+ 
+\f1\b 5. Shims Library\
+	
+\f0\b0 - Shim is a library used to make platform independent services. \
+	- It is responsible for converting the \'93unmanaged\'94 code into \'93managed\'94 code. \
+	- \'93
+\f1\b shims.ts
+\f0\b0 \'94 manages all interactions on unmanaged code. \
+\
+ 
+\f1\b 6. TS Server\
+	
+\f0\b0 - Typescript provides a native server to host application.\
+	- It handles request and response. \
+	- It can process the application in processing pipeline.\
+	- \'93
+\f1\b server.ts\'94 
+\f0\b0 handles the server. \
+\
+\
+	
+\f1\b Setup Typescript & Create Typescript Project:\
+\
+	
+\f0\b0 1. Open your command prompt or terminal \
+		\
+				> npm  install   -g  typescript \
+\
+	2. Check the version of typescript \
+	\
+				> tsc  -v\
+\
+	3. Create a new folder for typescript project\
+			\
+				D:\\ts-project\
+\
+	4. Open in visual studio code \
+\
+	5. Run the following commands in project terminal \
+\
+				> npm init -y            => generates 
+\f1\b package.json
+\f0\b0 \
+				> tsc -init                 => generates 
+\f1\b tsconfig.json
+\f0\b0 \
+	\
+		
+\f1\b Note: 
+\f0\b0 \'93tsconfig.json\'94 is typescript configuration and language analysis tool.\
+				   Early version use 2 files:\
+					a) tslint.json\
+					b) tsconfig.json \
+\
+	6. Add a new file into project \'93index.ts\'94 with following code\
+\
+				console.log(\'93Welcome to Typescript\'94);\
+\
+	7. Compile from terminal \
+\
+				> tsc  index.ts              => generates index.js \
+\
+	6. Run index.js with node compiler \
+\
+				> node index.js\
+\
+	\
+	
+\f1\b Typescript Language:\
+	
+\f0\b0 \
+	\
+\
+\
+\
+\
+\
+\
+\
+\
+	\
+\
+\
+\
+\
+}

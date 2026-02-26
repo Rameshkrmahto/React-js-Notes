@@ -1,0 +1,245 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;
+\red144\green1\blue18;\red19\green118\blue70;\red15\green112\blue1;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c100000;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c0\c50196\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 											   
+\f1\b Typescript Language\
+  	
+\f0\b0 1. Variables\
+	2. Data Types\
+	3. Operators\
+	4. Statements\
+	5. Functions\
+	6. OOPS\
+	7. Modules & Namespaces \
+\
+\
+	
+\f1\b Variables & Data Types\
+	
+\f0\b0 - Variable configuration in typescript comprises of \
+		a) keyword [var, let, const]\
+		b) data type [any Javascript data type]\
+\
+	 Syntax:\
+			keyword  variableName: dataType;                       // declaration \
+			keyword  variableName: dataType = value;          // initialization \
+\
+	 Ex:\
+			let price:number = 1000;\
+			let name:string = \'93A\'94;\
+			let stock:boolean = true;\
+	\
+	- All Javascript primitive types are same \
+			\
+			number, boolean, string, null, undefined, symbol, bigint\
+	\
+	- Typescript supports 
+\f1\b type inference. 
+\f0\b0 The data type can be determined according to \
+	   the value initialized. \
+\
+	- If value is not defined then the default is 
+\f1\b \'93any\'94 
+\f0\b0 type, which is the root for all types.\
+	\
+			 let  age;            // age is any \
+			 age = 10;			 // valid\
+			 age = \'93A\'94;		 // valid \
+\
+			 let age = 20;	 // age is number\
+			 age = \'93A\'94;        // invalid \
+  \
+	- Typescript supports 
+\f1\b \'93union\'94 
+\f0\b0 of types. It allows to configure multiple types.\
+\
+			let  uname : null | string = prompt(\'91Enter Name\'92);\
+			let  x : number | string | boolean; \
+\
+	- All number methods, string methods and other manipulations on primitive types are\
+	  same as in Javascript. \
+\
+			let price:number = 4000;\
+			price.toFixed(), toLocaleString(), toPrecision()\
+			isNaN(price) etc..\
+		\
+			let name:string = \'93John\'94;\
+			name.length\
+			name.charAt()\
+			name.split() etc..
+\f1\b \
+	\
+	Handling Non Primitive & Complex types:\
+	
+\f0\b0 \
+	1. Array		\
+	   - Typescript array can handle various types like Javascript and can also restrict\
+		  array to similar type of values. \
+		\
+		 Syntax:\
+				 let  names:string[] = new Array();\
+				 let  names:string[] = [ ];\
+\
+				 let  values:any[] = [ ];\
+				 values[0] = 10;\
+				 values[1] = \'93A\'94;\
+				 values[2] = true;\
+\
+	 - You can\'92t initialize various types of values using an array constructor even when\
+		the data type is any. \
+	 - You can handle various types assignment not 
+\f1\b initialization
+\f0\b0 .\
+\
+				 let values:any[] = new Array(10, \'93A\'94);   // invalid  first value type is used for\
+											                                     others. 
+\f1\b \
+				 
+\f0\b0 let values:any[]  = [ 10, \'93A\'94, true];         // valid \
+\
+
+\f1\b 	 
+\f0\b0 - Array constructor will allow assignment of various types but will not allow initialization when data type is defined as 
+\f1\b any. \
+\
+				
+\f0\b0  let values:any[] = new Array();\
+				 values[0] = 10;\
+				 values[1] = \'93A\'94;      // valid \
+				 values[2] = true;    // valid \
+\
+	- If array is allowed with a collection of various types of values initialization & assignment then it is known as a 
+\f1\b Tuple. \
+	\
+				  
+\f0\b0 let values:any[] = [ ];       // tuple \
+	\
+	- Array can configure union of types. However it will not allow to initialize all types\
+	  defined in union. You can assign all types in union. \
+\
+				  let values:string[] | number[] = [ 10, \'93A\'94 ] ;    // invalid \
+												                  [ 10, 20 ]  ;    // valid\
+												                  [ \'93A\'94, \'93B\'94] ;     // valid \
+ \
+				  values[0] = 10;       // valid\
+				  values[1] = \'93A\'94;      // valid \
+\
+	- All array methods are same as in Javascript.\
+\
+   2. Object\
+		- Typescript object type is schema based. \
+		- It configures structured data. \
+		- Properties defined in structure are mandatory to configure. [default rule]\
+		\
+		Syntax:\
+			let obj : \{property:datatype, property:datatype\} = \{ \}\
+\
+			let product : \{Name:string, Price:number\} = \{ \} \
+\
+		- It supports optional properties defined with \'93?\'94, which is a null reference \
+		  character. \
+\
+			Syntax:\
+			 let product : \{Name:string, Price:number, Rating?:number= \{ \}\
+\
+			 // Rating is optional in product 
+\f1\b \
+\
+		- 
+\f0\b0 It supports read-only properties, you can initialize a value but can\'92t assign. \
+	\
+			Syntax:\
+			 let product : \{Name:string, readonly Price:number\} = \{ \
+				Name:\'94TV\'94,\
+			    Price: 3000\
+			\}
+\f1\b \
+		    
+\f0\b0 product.Price = 3400;   // invalid Price is read-only property.\
+\
+
+\f1\b 		
+\f0\b0 - All object manipulations are same as in Javascript. \
+ Ex:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\cb3  \cf4 \strokec4 let\cf0 \strokec2  product:\{Name:string, \cf4 \strokec4 readonly\cf0 \strokec2  Price:number, Stock:boolean, Rating?:number\} = \{\cb1 \
+\cb3       Name : \cf5 \strokec5 "TV"\cf0 \strokec2 ,\cb1 \
+\cb3       Price: \cf6 \strokec6 3000\cf0 \strokec2 ,\cb1 \
+\cb3       Stock: \cf4 \strokec4 true\cf0 \cb1 \strokec2 \
+\cb3  \}\cb1 \
+\cb3  product.Price = \cf6 \strokec6 5000\cf0 \strokec2 ;\cb1 \
+\cb3  \cf4 \strokec4 if\cf0 \strokec2 (product.Rating)\{\cb1 \
+\cb3     \cf7 \strokec7 // then print with rating\cf0 \cb1 \strokec2 \
+\cb3  \} \cf4 \strokec4 else\cf0 \strokec2  \{\cb1 \
+\cb3     \cf7 \strokec7 // print without rating\cf0 \cb1 \strokec2 \
+\cb3  \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+		
+\f1\b FAQ: How to configure array of objects?\
+		
+\f0\b0 Ans:  It requires a schema with array meta character. \
+\
+				 let  data: \{property:datatype\} [ ] = [ ];\
+ EX:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\cb3  \cf4 \strokec4 let\cf0 \strokec2  products:\{id:number, title:string, price:number, rating:\{rate:number\}\}[] = [\cb1 \
+\cb3     \{id:\cf6 \strokec6 1\cf0 \strokec2 , title:\cf5 \strokec5 'tv'\cf0 \strokec2 , price:\cf6 \strokec6 4500\cf0 \strokec2 , rating:\{rate:\cf6 \strokec6 2.3\cf0 \strokec2 \}\},\cb1 \
+\cb3     \{id:\cf6 \strokec6 1\cf0 \strokec2 , title:\cf5 \strokec5 'tv'\cf0 \strokec2 , price:\cf6 \strokec6 4500\cf0 \strokec2 , rating:\{rate:\cf6 \strokec6 2.3\cf0 \strokec2 \}\}\cb1 \
+\cb3  ];\cb1 \
+\
+\cb3  \cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+	3. Map Type is same as in Javascript 
+\f1\b \
+\
+				
+\f0\b0 let data:Map<T, K> = new Map();\
+		\
+		- Typescript allows to configure a data type for key and value.\
+		- Javascript Map can have any type of key or value. \
+		\
+		Syntax:\
+				let data: Map<key_datatype, value_datatype> = new Map()\
+\
+			    let data: Map<number, string> = new Map();\
+				data.set(1, \'93A\'94);\
+				data.set(2, \'93B\'94);\
+\
+				let data: Map<string, any> = new Map();\
+				data.set(\'93A\'94, [ ]);\
+				data.set(\'93B\'94, \{ \});\
+\
+		- Map manipulations are same as in Javascript. \
+		\
+				
+\f1\b \
+\
+
+\f0\b0 \
+\
+\
+\
+\
+\
+\
+\
+\
+}

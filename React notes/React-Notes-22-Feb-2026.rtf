@@ -1,0 +1,250 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red255\green255\blue255;
+\red144\green1\blue18;\red19\green118\blue70;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0  
+\f1\b Typescript OOP\
+	- Contracts\
+		
+\f0\b0 interface\
+	
+\f1\b - Component\
+		
+\f0\b0 class \
+		class implements contract\
+		class can implement multiple contracts [multiple, multilevel]\
+		class have static & non-static \
+		class members same\
+			a) property\
+			b) accessor\
+			c) constructor \
+			d) method\
+\
+	
+\f1\b Access Modifiers:\
+\
+			a) public\
+					
+\f0\b0 - It is default access modifier. \
+					- It allows access from any location and through any object.\
+					- You can access with super or derived class object.\
+\
+			
+\f1\b b) private\
+					
+\f0\b0 - It is accessible only with in the defined class. \
+\
+			
+\f1\b c) protected \
+					
+\f0\b0 - It is accessible within the defined class.\
+					- It is accessible outside class but inside derived class and only by using\
+					  derived class reference. \
+ Ex:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\cf3 \cb4 \strokec3 class\cf0 \strokec2  Product\cb1 \
+\cb4 \{\cb1 \
+\cb4      \cf3 \strokec3 public\cf0 \strokec2  Name:string = \cf5 \strokec5 "TV"\cf0 \strokec2 ;\cb1 \
+\cb4      \cf3 \strokec3 private\cf0 \strokec2  Price:number = \cf6 \strokec6 53000\cf0 \strokec2 ;\cb1 \
+\cb4      \cf3 \strokec3 protected\cf0 \strokec2  Stock:boolean = \cf3 \strokec3 true\cf0 \strokec2 ;\cb1 \
+\cb4 \}\cb1 \
+\cf3 \cb4 \strokec3 class\cf0 \strokec2  Derived \cf3 \strokec3 extends\cf0 \strokec2  Product\cb1 \
+\cb4 \{\cb1 \
+\cb4     \cf3 \strokec3 public\cf0 \strokec2  Print(obj1:Derived)\{\cb1 \
+\cb4         obj1.Name;\cb1 \
+\cb4         obj1.Stock;\cb1 \
+\cb4     \}\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  obj = \cf3 \strokec3 new\cf0 \strokec2  Derived();\cb1 \
+\cb4 obj.Name;\cb1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 	
+\f1\b Note: Every member of class is defined with type. \
+			  Property, method and arguments are strongly typed. \
+\
+	3. Templates\
+		
+\f0\b0 - Template comprises of pre-defined design and logic, which you can customize\
+		  and implements according to requirements.\
+		- Templates are used to hide the structure and provide only functionality. \
+		- They are required in rollouts and various module implementations in application\
+		   development.\
+		- The process of hiding the structure and providing only functionality is known as\
+		   
+\f1\b Abstraction.\
+		
+\f0\b0 - Templates are designed as \'93Abstract Classes\'94 \
+\
+		Syntax:\
+			abstract class Name\
+			\{\
+				abstract Property:type;  ]   //abstract\
+				abstract Method():type; ]\
+				Property:type;                   // non abstract\
+			\}\
+
+\f1\b \
+		-
+\f0\b0  Abstract members are implemented using derived class. \
+		\
+ Ex:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 interface\cf0 \strokec2  ProductContract\cb1 \
+\cb4 \{\cb1 \
+\cb4      Name:string;\cb1 \
+\cb4      Price:number;\cb1 \
+\cb4      Qty:number;\cb1 \
+\cb4      Total():number;\cb1 \
+\cb4      Print():void;\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 abstract\cf0 \strokec2  \cf3 \strokec3 class\cf0 \strokec2  ProductTemplate \cf3 \strokec3 implements\cf0 \strokec2  ProductContract\cb1 \
+\cb4 \{   \cb1 \
+\cb4       \cf3 \strokec3 public\cf0 \strokec2  Name:string = \cf5 \strokec5 ""\cf0 \strokec2 ;\cb1 \
+\cb4       \cf3 \strokec3 public\cf0 \strokec2  Price:number = \cf6 \strokec6 0\cf0 \strokec2 ;\cb1 \
+\cb4       \cf3 \strokec3 public\cf0 \strokec2  Qty:number = \cf6 \strokec6 0\cf0 \strokec2 ;\cb1 \
+\cb4       \cf3 \strokec3 public\cf0 \strokec2  \cf3 \strokec3 abstract\cf0 \strokec2  Total():number;\cb1 \
+\cb4       \cf3 \strokec3 public\cf0 \strokec2  \cf3 \strokec3 abstract\cf0 \strokec2  Print():void;\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 class\cf0 \strokec2  ProductComponent \cf3 \strokec3 extends\cf0 \strokec2  ProductTemplate\cb1 \
+\cb4 \{\cb1 \
+\cb4      Name = \cf5 \strokec5 "TV"\cf0 \strokec2 ;\cb1 \
+\cb4      Price = \cf6 \strokec6 34000\cf0 \strokec2 ;\cb1 \
+\cb4      Qty = \cf6 \strokec6 2\cf0 \strokec2 ;\cb1 \
+\cb4      Total()\{\cb1 \
+\cb4         \cf3 \strokec3 return\cf0 \strokec2  \cf3 \strokec3 this\cf0 \strokec2 .Qty * \cf3 \strokec3 this\cf0 \strokec2 .Price;\cb1 \
+\cb4      \}\cb1 \
+\cb4      Print()\{\cb1 \
+\cb4         console.log(\cf5 \strokec5 `Name=\cf3 \strokec3 $\{this\cf0 \strokec2 .Name\cf3 \strokec3 \}\cf5 \strokec5 \\nPrice=\cf3 \strokec3 $\{this\cf0 \strokec2 .Price\cf3 \strokec3 \}\cf5 \strokec5 \\nQty=\cf3 \strokec3 $\{this\cf0 \strokec2 .Qty\cf3 \strokec3 \}\cf5 \strokec5 \\nTotal=\cf3 \strokec3 $\{this\cf0 \strokec2 .Total()\cf3 \strokec3 \}\cf5 \strokec5 `\cf0 \strokec2 );\cb1 \
+\cb4      \}\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  obj = \cf3 \strokec3 new\cf0 \strokec2  ProductComponent();\cb1 \
+\cb4 obj.Print();\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		
+\f0\b0 \
+	 
+\f1\b 4. Generics\
+		
+\f0\b0 - Generics are used to configure 
+\f1\b Type Safe 
+\f0\b0 content. \
+		- A type safe member is open for any type and strongly typed for specific data type.\
+		- In OOP \
+			a) Function can be generic\
+			b) Parameters can be generic \
+			c) Class can be generic \
+			d) Property & Method can be generic \
+			e) Constructor can be generic \
+					[ not supported in Typescript that trans compiles into Javascript ]\
+	\
+	 Syntax:\
+			function Name<Type>(params:Type): Type\
+			\{\
+\
+			\}\
+\
+	 Syntax:\
+			class Name<T>\
+			\{\
+				 constructor(param:T) \{ \}\
+				 property : T;\
+				 method<T>(): T \{ \}\
+			\}\
+ Ex:\
+	
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 interface\cf0 \strokec2  MySQL\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb4 \{\cb1 \
+\cb4      host:string;\cb1 \
+\cb4      user:string;\cb1 \
+\cb4      password:string;\cb1 \
+\cb4      database:string;\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 interface\cf0 \strokec2  MongoDB\cb1 \
+\cb4 \{\cb1 \
+\cb4      url:string;\cb1 \
+\cb4 \}\cb1 \
+\
+\
+\cf3 \cb4 \strokec3 class\cf0 \strokec2  Database<T>\cb1 \
+\cb4 \{\cb1 \
+\cb4      \cf3 \strokec3 constructor\cf0 \strokec2 (connectionString:T)\{\cb1 \
+\cb4         \cf3 \strokec3 for\cf0 \strokec2 (\cf3 \strokec3 var\cf0 \strokec2  property \cf3 \strokec3 in\cf0 \strokec2  connectionString)\{\cb1 \
+\cb4              console.log(\cf5 \strokec5 `\cf3 \strokec3 $\{\cf0 \strokec2 property\cf3 \strokec3 \}\cf5 \strokec5  : \cf3 \strokec3 $\{\cf0 \strokec2 connectionString[property]\cf3 \strokec3 \}\cf5 \strokec5 `\cf0 \strokec2 );\cb1 \
+\cb4         \}\cb1 \
+\cb4      \}\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  mysql = \cf3 \strokec3 new\cf0 \strokec2  Database<MySQL>(\{host:\cf5 \strokec5 'localhost'\cf0 \strokec2 , user:\cf5 \strokec5 'root'\cf0 \strokec2 , password:\cf5 \strokec5 '1234'\cf0 \strokec2 , database:\cf5 \strokec5 'productdb'\cf0 \strokec2 \});\cb1 \
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  mongodb = \cf3 \strokec3 new\cf0 \strokec2  Database<MongoDB>(\{url:\cf5 \strokec5 'mongodb://127.0.0.1:27017'\cf0 \strokec2 \});\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+		\
+ Ex:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 interface\cf0 \strokec2  IProduct\cb1 \
+\cb4 \{\cb1 \
+\cb4       id:number;\cb1 \
+\cb4       title:string;\cb1 \
+\cb4       price:number;\cb1 \
+\cb4 \}\cb1 \
+\cf3 \cb4 \strokec3 interface\cf0 \strokec2  IEmployee\{\cb1 \
+\cb4      firstName:string;\cb1 \
+\cb4      designation:string;\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 class\cf0 \strokec2  FetchAPI<T>\cb1 \
+\cb4 \{\cb1 \
+\cb4       \cf3 \strokec3 constructor\cf0 \strokec2 (response:T)\{\cb1 \
+\cb4           console.log(response);\cb1 \
+\cb4       \}\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  product = \cf3 \strokec3 new\cf0 \strokec2  FetchAPI<IProduct>(\{id:\cf6 \strokec6 1\cf0 \strokec2 , title:\cf5 \strokec5 'tv'\cf0 \strokec2 , price:\cf6 \strokec6 34000\cf0 \strokec2 \});\cb1 \
+\
+\cf3 \cb4 \strokec3 let\cf0 \strokec2  products = \cf3 \strokec3 new\cf0 \strokec2  FetchAPI<IProduct[]>([\{id:\cf6 \strokec6 2\cf0 \strokec2 , title:\cf5 \strokec5 'mobile'\cf0 \strokec2 , price:\cf6 \strokec6 50000\cf0 \strokec2 \}]);\cb1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs64 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0   Enum, Namespace \
+	\
+\
+\
+\
+\
+\
+\
+\
+		\
+				\
+\
+\
+\
+\
+\
+\
+\
+}
